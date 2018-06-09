@@ -1,0 +1,52 @@
+@font-face {
+  font-family: AkuraPopo;
+  src: url(/Akura-Popo-2/Akura-Popo.otf);
+}
+
+.akura {
+  font: AkuraPopo, serif;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.center_text {
+  text-align: center;
+}
+
+.app_yellow_text {
+  color: #f6c212;
+}
+
+.logo_size {
+  font-size: 1.5em;
+}
+
+.left_navtext {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.right_navtext {
+  color: black;
+  font-weight: bold;
+}
+
+.vertical_align {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.forgot_password {
+  border-bottom: 1px dashed;
+  float: right;
+}
+
+.eighth_of_em {
+  font-size: 0.8em;
+}
