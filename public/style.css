@@ -4,12 +4,27 @@
 }
 
 .akura {
-  font: AkuraPopo, serif;
+  font: AkuraPopo, serif !important;
+}
+
+.custom_error {
+  background: #fff6f6 !important;
+  border-color: #e0b4b4 !important;
+  color: #9f3a38 !important;
 }
 
 .bold {
   font-weight: bolder;
 }
+
+.linkshare_blue {
+  color: #4183c4 !important;
+}
+
+/* .blue_on_hover:hover {
+  color: white !important;
+  background-color: #4183c4 !important;
+} */
 
 .underline {
   text-decoration: underline;
@@ -17,10 +32,6 @@
 
 .center_text {
   text-align: center;
-}
-
-.app_yellow_text {
-  color: #f6c212;
 }
 
 .logo_size {
@@ -44,6 +55,18 @@
 
 .forgot_password {
   border-bottom: 1px dashed;
+  float: right;
+}
+
+.review_characters_met {
+  color: #30c452;
+}
+
+.review_characters_not_met {
+  color: #d14751;
+}
+
+.review_characters_right {
   float: right;
 }
 
