@@ -1,6 +1,5 @@
 import React from "react";
 
-const URL = "http://localhost:3000/";
 class SearchWidget extends React.Component {
   constructor() {
     super();

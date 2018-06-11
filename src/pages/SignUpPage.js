@@ -45,7 +45,7 @@ class SignUpPage extends React.Component {
                   </div>
                   <br />
 
-                  <button class="ui fluid button">Sign Up</button>
+                  <button className="ui fluid button">Sign Up</button>
                   <br />
                   <p className="eighth_of_em center_text">
                     Already a member? <Link to="/signin">Sign in!</Link>

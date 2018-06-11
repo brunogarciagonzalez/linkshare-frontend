@@ -34,7 +34,7 @@ class SignInPage extends React.Component {
                   <p className="eighth_of_em forgot_password">
                     <Link to="/forgot-password">forgot password?</Link>
                   </p>
-                  <button class="ui fluid button">Sign In</button>
+                  <button className="ui fluid button">Sign In</button>
                   <br />
                   <p className="eighth_of_em center_text">
                     Not a member? <Link to="/signup">Sign up!</Link>
