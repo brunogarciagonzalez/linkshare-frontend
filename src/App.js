@@ -9,14 +9,29 @@ import AboutPage from "./pages/AboutPage";
 import TagDirectoryPage from "./pages/TagDirectoryPage";
 import TagPage from "./pages/TagPage";
 import SuggestTagPage from "./pages/TagPage";
+import ConstructUserSharePage from "./pages/ConstructUserSharePage";
+
+const URL = "http://localhost:3000/";
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      user: null
+      user: null,
+      allTags: []
     };
+  }
+
+  componentDidMount() {
+    // fetch all tags
+    fetch(`${URL}/tags`)
+      .then(r => r.json())
+      .then(json => {
+        this.setState({ allTags: json.tags }, () =>
+          console.log("app state", this.state)
+        );
+      });
   }
 
   render() {
@@ -30,6 +45,14 @@ class App extends Component {
           <Route exact path="/about" component={AboutPage} />
           <Route exact path="/tags" component={TagDirectoryPage} />
           <Route exact path="/tags/:TagID" component={TagPage} />
+          <Route exact path="/suggest-tag" component={SuggestTagPage} />
+          <Route
+            exact
+            path="/construct-linkshare"
+            render={() => (
+              <ConstructUserSharePage allTags={this.state.allTags} />
+            )}
+          />
         </div>
       </BrowserRouter>
     );
