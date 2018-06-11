@@ -2,7 +2,7 @@ import React from "react";
 import { Dropdown } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 
-const URL = "http://localhost:3000/";
+const URL = "http://localhost:3000";
 
 class ConstructUserSharePage extends React.Component {
   constructor() {
@@ -123,7 +123,7 @@ class ConstructUserSharePage extends React.Component {
               <div id="link">
                 <div className="ui medium header left linkshare_blue">Link</div>
                 <div className="ui fluid labeled input error">
-                  <div className="ui label">needs http://</div>
+                  <div className="ui label">http://</div>
                   <input
                     type="text"
                     placeholder="example.com"
@@ -136,7 +136,7 @@ class ConstructUserSharePage extends React.Component {
               <div id="link">
                 <div className="ui medium header left linkshare_blue">Link</div>
                 <div className="ui fluid labeled input">
-                  <div className="ui label">needs http://</div>
+                  <div className="ui label">http://</div>
                   <input
                     type="text"
                     placeholder="example.com"
