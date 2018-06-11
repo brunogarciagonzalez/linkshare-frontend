@@ -33,6 +33,7 @@ class ConstructUserSharePage extends React.Component {
         let reviewRatingDDOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => {
           return { key: num, value: num, text: num };
         });
+
         this.setState({
           tagDropdownOptions: tagDDOptions,
           reviewRatingDropdownOptions: reviewRatingDDOptions
