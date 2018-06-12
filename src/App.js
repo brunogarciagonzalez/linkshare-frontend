@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import NavBarWidget from "./widgets/NavBarWidget";
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
@@ -9,6 +9,11 @@ import AboutPage from "./pages/AboutPage";
 import TagDirectoryPage from "./pages/TagDirectoryPage";
 import TagPage from "./pages/TagPage";
 import SuggestTagPage from "./pages/TagPage";
+import ConstructLinkSharePage from "./pages/ConstructLinkSharePage";
+import LinkSharePage from "./pages/LinkSharePage";
+import EditLinkSharePage from "./pages/EditLinkSharePage";
+
+const URL = "http://localhost:3000";
 
 class App extends Component {
   constructor() {
@@ -18,6 +23,15 @@ class App extends Component {
       user: null
     };
   }
+
+  // componentDidMount() {
+  //   // fetch all tags
+  //   fetch(`${URL}/tags`)
+  //     .then(r => r.json())
+  //     .then(json => {
+  //       this.setState({ allTags: json.tags });
+  //     });
+  // }
 
   render() {
     return (
@@ -30,6 +44,18 @@ class App extends Component {
           <Route exact path="/about" component={AboutPage} />
           <Route exact path="/tags" component={TagDirectoryPage} />
           <Route exact path="/tags/:TagID" component={TagPage} />
+          <Route exact path="/suggest-tag" component={SuggestTagPage} />
+          <Route exact path="/linkshares/:shareID" component={LinkSharePage} />
+          <Route
+            exact
+            path="/construct-linkshare"
+            component={ConstructLinkSharePage}
+          />
+          <Route
+            exact
+            path="/edit-linkshare/:shareID"
+            component={EditLinkSharePage}
+          />
         </div>
       </BrowserRouter>
     );
@@ -37,3 +63,9 @@ class App extends Component {
 }
 
 export default App;
+
+// <Route
+//   exact
+//   path="/construct-linkshare"
+//   render={() => <ConstructLinkSharePage allTags={this.state.allTags} />}
+// />;
