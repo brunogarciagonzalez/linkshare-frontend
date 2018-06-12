@@ -14,6 +14,7 @@ class ConstructLinkSharePage extends React.Component {
 
     this.state = {
       redirect: false,
+      redirect_to_id: null,
       tagDropdownOptions: [],
       reviewRatingDropdownOptions: [],
       linkUrl: "",
@@ -88,6 +89,7 @@ class ConstructLinkSharePage extends React.Component {
         return json;
       })
       .then(json => {
+        console.log(json);
         if (json.status === "failure") {
           let linkErrors = json.link_errors;
           let reviewErrors = json.review_errors;
@@ -104,10 +106,13 @@ class ConstructLinkSharePage extends React.Component {
             linkErrors,
             reviewErrors
           });
-        } else {
+        } else if (json.status === "success") {
           this.setState({
+            redirect_to_id: json.user_share_id,
             redirect: true
           });
+        } else {
+          alert("There was an error processing your request");
         }
       });
     // remember to clear all fields
@@ -115,7 +120,7 @@ class ConstructLinkSharePage extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect push to="/" />;
+      return <Redirect push to={`/linkshares/${this.state.redirect_to_id}`} />;
     }
     return (
       <div>

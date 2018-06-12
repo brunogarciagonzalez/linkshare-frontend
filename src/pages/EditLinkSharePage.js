@@ -116,6 +116,7 @@ class EditLinkSharePage extends React.Component {
         return json;
       })
       .then(json => {
+        console.log(json);
         if (json.status === "failure") {
           let linkErrors = json.link_errors;
           let reviewErrors = json.review_errors;
@@ -132,17 +133,19 @@ class EditLinkSharePage extends React.Component {
             linkErrors,
             reviewErrors
           });
-        } else {
+        } else if (json.status === "success") {
           this.setState({
             redirect: true
           });
+        } else {
+          alert("There was an error processing your request");
         }
       });
   };
 
   render() {
     if (this.state.redirect) {
-      return <Redirect push to="/" />;
+      return <Redirect push to={`/linkshares/${this.state.id}`} />;
     }
     return (
       <div>
