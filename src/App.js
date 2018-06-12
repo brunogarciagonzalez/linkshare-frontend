@@ -13,8 +13,6 @@ import ConstructLinkSharePage from "./pages/ConstructLinkSharePage";
 import LinkSharePage from "./pages/LinkSharePage";
 import EditLinkSharePage from "./pages/EditLinkSharePage";
 
-const URL = "http://localhost:3000";
-
 class App extends Component {
   constructor() {
     super();
@@ -23,15 +21,6 @@ class App extends Component {
       user: null
     };
   }
-
-  // componentDidMount() {
-  //   // fetch all tags
-  //   fetch(`${URL}/tags`)
-  //     .then(r => r.json())
-  //     .then(json => {
-  //       this.setState({ allTags: json.tags });
-  //     });
-  // }
 
   render() {
     return (
@@ -43,19 +32,19 @@ class App extends Component {
           <Route exact path="/signup" component={SignUpPage} />
           <Route exact path="/about" component={AboutPage} />
           <Route exact path="/tags" component={TagDirectoryPage} />
+          <Route exact path="/tags/suggest" component={SuggestTagPage} />
           <Route exact path="/tags/:TagID" component={TagPage} />
-          <Route exact path="/suggest-tag" component={SuggestTagPage} />
-          <Route exact path="/linkshares/:shareID" component={LinkSharePage} />
           <Route
             exact
-            path="/construct-linkshare"
+            path="/linkshares/construct"
             component={ConstructLinkSharePage}
           />
           <Route
             exact
-            path="/edit-linkshare/:shareID"
+            path="/linkshares/edit/:shareID"
             component={EditLinkSharePage}
           />
+          <Route exact path="/linkshares/:shareID" component={LinkSharePage} />
         </div>
       </BrowserRouter>
     );

@@ -136,7 +136,7 @@ class EditLinkSharePage extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect push to={`/linkshares/${this.state.id}`} />;
+      return <Redirect push to={`/linkshares/show/${this.state.id}`} />;
     }
     return (
       <div>

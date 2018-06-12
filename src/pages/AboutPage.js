@@ -15,17 +15,12 @@ class AboutPage extends React.Component {
         <p>Safe Browsing Check</p>
         <ul>
           <li>
-            <a
-              href="https://developers.google.com/safe-browsing/v3/lookup-guide#ProtocolSpecification"
-              target="_blank"
-            >
+            <a href="https://developers.google.com/safe-browsing/v3/lookup-guide#ProtocolSpecification">
               Google Safe Browsing Api
             </a>
           </li>
           <li>
-            <a href="https://safeweb.norton.com/" target="_blank">
-              Norton Safe Web
-            </a>
+            <a href="https://safeweb.norton.com/">Norton Safe Web</a>
           </li>
         </ul>
         <p>Twitter API idea</p>
