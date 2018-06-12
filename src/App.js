@@ -43,17 +43,21 @@ class App extends Component {
           <Route exact path="/signup" component={SignUpPage} />
           <Route exact path="/about" component={AboutPage} />
           <Route exact path="/tags" component={TagDirectoryPage} />
-          <Route exact path="/tags/:TagID" component={TagPage} />
-          <Route exact path="/suggest-tag" component={SuggestTagPage} />
-          <Route exact path="/linkshares/:shareID" component={LinkSharePage} />
+          <Route exact path="/tags/show/:TagID" component={TagPage} />
+          <Route exact path="/tags/suggest" component={SuggestTagPage} />
           <Route
             exact
-            path="/construct-linkshare"
+            path="/linkshares/show/:shareID"
+            component={LinkSharePage}
+          />
+          <Route
+            exact
+            path="/linkshares/construct"
             component={ConstructLinkSharePage}
           />
           <Route
             exact
-            path="/edit-linkshare/:shareID"
+            path="/linkshare/edit/:shareID"
             component={EditLinkSharePage}
           />
         </div>
