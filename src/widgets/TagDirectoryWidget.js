@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class TagDirectoryWidget extends React.Component {
   constructor() {
@@ -19,7 +20,7 @@ class TagDirectoryWidget extends React.Component {
               {this.props.tags.map(tag => {
                 return (
                   <div className="column" key={tag.id}>
-                    {tag.title}
+                    <Link to={`/tags/${tag.id}`}>{tag.title}</Link>
                   </div>
                 );
               })}
