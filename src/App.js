@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import NavBarWidget from "./widgets/NavBarWidget";
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
@@ -9,9 +9,11 @@ import AboutPage from "./pages/AboutPage";
 import TagDirectoryPage from "./pages/TagDirectoryPage";
 import TagPage from "./pages/TagPage";
 import SuggestTagPage from "./pages/TagPage";
-import ConstructUserSharePage from "./pages/ConstructUserSharePage";
+import ConstructLinkSharePage from "./pages/ConstructLinkSharePage";
+import LinkSharePage from "./pages/LinkSharePage";
+import EditLinkSharePage from "./pages/EditLinkSharePage";
 
-const URL = "http://localhost:3000/";
+const URL = "http://localhost:3000";
 
 class App extends Component {
   constructor() {
@@ -28,9 +30,7 @@ class App extends Component {
     fetch(`${URL}/tags`)
       .then(r => r.json())
       .then(json => {
-        this.setState({ allTags: json.tags }, () =>
-          console.log("app state", this.state)
-        );
+        this.setState({ allTags: json.tags });
       });
   }
 
@@ -49,9 +49,13 @@ class App extends Component {
           <Route
             exact
             path="/construct-linkshare"
-            render={() => (
-              <ConstructUserSharePage allTags={this.state.allTags} />
-            )}
+            component={ConstructLinkSharePage}
+          />
+          <Route exact path="/linkshares/:shareID" component={LinkSharePage} />
+          <Route
+            exact
+            path="/edit-linkshare/:shareID"
+            component={EditLinkSharePage}
           />
         </div>
       </BrowserRouter>
@@ -60,3 +64,11 @@ class App extends Component {
 }
 
 export default App;
+
+// <Route
+//   exact
+//   path="/construct-linkshare"
+//   render={() => (
+//     <ConstructLinkSharePage allTags={this.state.allTags} />
+//   )}
+//   />
