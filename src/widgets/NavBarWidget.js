@@ -23,8 +23,7 @@ class NavBarWidget extends React.Component {
             <div className="ui secondary menu">
               <div className="item">
                 <span className="bold">
-                  The people’s directory for community-based internet
-                  exploration
+                  A people’s directory for community-based internet exploration
                 </span>
               </div>
             </div>
