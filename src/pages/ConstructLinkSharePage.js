@@ -62,8 +62,6 @@ class ConstructLinkSharePage extends React.Component {
   };
 
   handleSubmit = e => {
-    // send info to the back end but it has to check all things before anything gets added to db!!!
-    console.log("state on submission:", this.state);
     fetch(`${URL}/user-shares/construct`, {
       method: "POST",
       headers: {
@@ -85,11 +83,6 @@ class ConstructLinkSharePage extends React.Component {
     })
       .then(r => r.json())
       .then(json => {
-        console.log("construct_share json response:", json);
-        return json;
-      })
-      .then(json => {
-        console.log(json);
         if (json.status === "failure") {
           let linkErrors = json.link_errors;
           let reviewErrors = json.review_errors;
@@ -115,7 +108,6 @@ class ConstructLinkSharePage extends React.Component {
           alert("There was an error processing your request");
         }
       });
-    // remember to clear all fields
   };
 
   render() {

@@ -45,7 +45,6 @@ class EditLinkSharePage extends React.Component {
         });
       });
 
-    // fetch linkshare and add its data to state
     fetch(`${URL}/user-shares/get`, {
       method: "POST",
       headers: {
@@ -75,9 +74,7 @@ class EditLinkSharePage extends React.Component {
   };
 
   handleTagsDropDown = (e, data) => {
-    this.setState({ selectedTags: data.value }, () =>
-      console.log(this.state.selectedTags)
-    );
+    this.setState({ selectedTags: data.value });
   };
 
   handleReviewRatingDropdown = (e, data) => {
@@ -89,7 +86,6 @@ class EditLinkSharePage extends React.Component {
   };
 
   handleSubmit = e => {
-    // send info to the back end but it has to check all things before anything gets added to db!!!
     fetch(`${URL}/user-shares/update`, {
       method: "POST",
       headers: {
@@ -112,11 +108,6 @@ class EditLinkSharePage extends React.Component {
     })
       .then(r => r.json())
       .then(json => {
-        console.log("update_user_share json response:", json);
-        return json;
-      })
-      .then(json => {
-        console.log(json);
         if (json.status === "failure") {
           let linkErrors = json.link_errors;
           let reviewErrors = json.review_errors;
