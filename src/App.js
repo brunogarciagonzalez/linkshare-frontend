@@ -20,19 +20,18 @@ class App extends Component {
     super();
 
     this.state = {
-      user: null,
-      allTags: []
+      user: null
     };
   }
 
-  componentDidMount() {
-    // fetch all tags
-    fetch(`${URL}/tags`)
-      .then(r => r.json())
-      .then(json => {
-        this.setState({ allTags: json.tags });
-      });
-  }
+  // componentDidMount() {
+  //   // fetch all tags
+  //   fetch(`${URL}/tags`)
+  //     .then(r => r.json())
+  //     .then(json => {
+  //       this.setState({ allTags: json.tags });
+  //     });
+  // }
 
   render() {
     return (
@@ -46,12 +45,12 @@ class App extends Component {
           <Route exact path="/tags" component={TagDirectoryPage} />
           <Route exact path="/tags/:TagID" component={TagPage} />
           <Route exact path="/suggest-tag" component={SuggestTagPage} />
+          <Route exact path="/linkshares/:shareID" component={LinkSharePage} />
           <Route
             exact
             path="/construct-linkshare"
             component={ConstructLinkSharePage}
           />
-          <Route exact path="/linkshares/:shareID" component={LinkSharePage} />
           <Route
             exact
             path="/edit-linkshare/:shareID"
@@ -68,7 +67,5 @@ export default App;
 // <Route
 //   exact
 //   path="/construct-linkshare"
-//   render={() => (
-//     <ConstructLinkSharePage allTags={this.state.allTags} />
-//   )}
-//   />
+//   render={() => <ConstructLinkSharePage allTags={this.state.allTags} />}
+// />;
