@@ -8,7 +8,7 @@ class LinkSharePage extends React.Component {
     super();
 
     this.state = {
-      found: false,
+      found: null,
       redirect: false,
       author: null,
       date: null,
@@ -38,26 +38,25 @@ class LinkSharePage extends React.Component {
           let user_share = json.user_share;
           let tagTitles = user_share.tags.map(tag => tag.title);
 
-          this.setState(
-            {
-              found: true,
-              author: user_share.user,
-              date: user_share.date.split("T")[0],
-              linkUrl: user_share.link.url,
-              selectedTags: tagTitles,
-              reviewRating: user_share.review.rating,
-              reviewContent: user_share.review.content
-            },
-            () => console.log("state after request:", this.state)
-          );
+          this.setState({
+            found: true,
+            author: user_share.user,
+            date: user_share.date.split("T")[0],
+            linkUrl: user_share.link.url,
+            selectedTags: tagTitles,
+            reviewRating: user_share.review.rating,
+            reviewContent: user_share.review.content
+          });
         } else {
-          console.log(json);
+          this.setState({
+            found: "false"
+          });
         }
       });
   }
 
   render() {
-    if (!this.state.found) {
+    if (this.state.found === "false") {
       return <h1>Not Found</h1>;
     }
 

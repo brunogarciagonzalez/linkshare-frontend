@@ -13,8 +13,6 @@ import ConstructLinkSharePage from "./pages/ConstructLinkSharePage";
 import LinkSharePage from "./pages/LinkSharePage";
 import EditLinkSharePage from "./pages/EditLinkSharePage";
 
-const URL = "http://localhost:3000";
-
 class App extends Component {
   constructor() {
     super();
@@ -47,19 +45,15 @@ class App extends Component {
           <Route exact path="/tags/suggest" component={SuggestTagPage} />
           <Route
             exact
-            path="/linkshares/show/:shareID"
-            component={LinkSharePage}
-          />
-          <Route
-            exact
             path="/linkshares/construct"
             component={ConstructLinkSharePage}
           />
           <Route
             exact
-            path="/linkshare/edit/:shareID"
+            path="/linkshares/edit/:shareID"
             component={EditLinkSharePage}
           />
+          <Route exact path="/linkshares/:shareID" component={LinkSharePage} />
         </div>
       </BrowserRouter>
     );
