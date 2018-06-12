@@ -22,15 +22,6 @@ class App extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   // fetch all tags
-  //   fetch(`${URL}/tags`)
-  //     .then(r => r.json())
-  //     .then(json => {
-  //       this.setState({ allTags: json.tags });
-  //     });
-  // }
-
   render() {
     return (
       <BrowserRouter>
@@ -41,8 +32,8 @@ class App extends Component {
           <Route exact path="/signup" component={SignUpPage} />
           <Route exact path="/about" component={AboutPage} />
           <Route exact path="/tags" component={TagDirectoryPage} />
-          <Route exact path="/tags/show/:TagID" component={TagPage} />
           <Route exact path="/tags/suggest" component={SuggestTagPage} />
+          <Route exact path="/tags/:TagID" component={TagPage} />
           <Route
             exact
             path="/linkshares/construct"
