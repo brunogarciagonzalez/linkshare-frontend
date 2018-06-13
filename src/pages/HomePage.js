@@ -1,8 +1,7 @@
 import React from "react";
 import SearchWidget from "../widgets/SearchWidget";
 import TagDirectoryWidget from "../widgets/TagDirectoryWidget";
-
-const URL = "http://localhost:3000";
+import URL from "../URL";
 
 class HomePage extends React.Component {
   constructor() {

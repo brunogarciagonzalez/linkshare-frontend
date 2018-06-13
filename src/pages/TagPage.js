@@ -2,7 +2,7 @@ import React from "react";
 import SafeBrowsingAPIKey from "../SafeBrowsingAPIKey";
 import LinkPreviewAPIKey from "../LinkPreviewAPIKey";
 import TagLinkCard from "../widgets/TagLinkCard";
-const URL = "http://localhost:3000";
+import URL from "../URL";
 
 class TagPage extends React.Component {
   constructor() {

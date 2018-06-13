@@ -6,7 +6,7 @@ import TagsError from "../widgets/TagsError";
 import TagsNoError from "../widgets/TagsNoError";
 import ReviewError from "../widgets/ReviewError";
 import ReviewNoError from "../widgets/ReviewNoError";
-const URL = "http://localhost:3000";
+import URL from "../URL";
 
 class EditLinkSharePage extends React.Component {
   constructor() {
