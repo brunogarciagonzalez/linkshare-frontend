@@ -1,5 +1,6 @@
 import React from "react";
 import SafeBrowsingAPIKey from "../SafeBrowsingAPIKey";
+import LinkPreviewAPIKey from "../LinkPreviewAPIKey";
 const URL = "http://localhost:3000";
 
 class TagPage extends React.Component {
@@ -23,15 +24,16 @@ class TagPage extends React.Component {
       body: JSON.stringify({ tag: { id: this.props.match.params.TagID } })
     })
       .then(r => r.json())
-      .then(json =>
+      .then(json => {
         this.setState({
           id: json.tag.id,
           title: json.tag.title,
           links: json.links
-        })
-      )
+        });
+      })
       .then(meh => {
         // serialize links into a copy
+        console.log("state:::", this.state);
         let serialized_links = this.state.links.map(linkObj => ({
           url: linkObj.link.url
         }));
@@ -64,7 +66,33 @@ class TagPage extends React.Component {
         )
           .then(r => r.json())
           .then(console.log);
-      });
+      })
+      .then(meh => {
+        this.state.links.forEach((linkObj, index) => {
+          fetch(
+            `http://api.linkpreview.net/?key=${LinkPreviewAPIKey}&q=${
+              linkObj.link.url
+            }`
+          )
+            .then(r => r.json())
+            .then(json => {
+              let linksCopy = [...this.state.links];
+              linksCopy[index]["loaded"] = true;
+              linksCopy[index]["preview"] = {};
+              linksCopy[index]["preview"]["image"] = json.image;
+              linksCopy[index]["preview"]["title"] = json.title;
+              linksCopy[index]["preview"]["description"] = json.description;
+
+              this.setState(
+                {
+                  links: linksCopy
+                },
+                () => console.log(index, linkObj.link.url, "state:", this.state)
+              );
+            });
+        });
+      })
+      .then(a => console.log("final state:", this.state));
   }
 
   render() {
@@ -76,14 +104,40 @@ class TagPage extends React.Component {
             <div className="ui large header centered">
               Tag: <span className="linkshare_blue">{this.state.title}</span>
             </div>
-            {this.state.links.map(link => {
-              return (
-                <p key={link.link.id}>
-                  {link.link.url} [Rating: {link.avg_rating}, Reviews:{" "}
-                  {link.num_reviews}]
-                </p>
-              );
-            })}
+            <br />
+            <br />
+            <div className="ui cards">
+              {this.state.links.map(link => {
+                return link.loaded ? (
+                  <div className="card" key={link.link.id}>
+                    <div className="content">
+                      <div className="header">{link.preview.title}</div>
+                      <div className="meta">
+                        <a className="linkshare_blue" href={link.link.url}>
+                          {link.link.url}
+                        </a>
+                      </div>
+                      <div className="description">
+                        Description: "{link.preview.description}"
+                      </div>
+                    </div>
+                    <div className="extra content">
+                      <span className="right floated">
+                        {link.num_reviews} Reviews
+                      </span>
+                      <span>
+                        <i className="star icon star_gold" />
+                        Rating: {link.avg_rating}/10
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="card" key={link.link.id}>
+                    <div className="ui active centered inline loader" />
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="three wide column" />
         </div>
@@ -93,3 +147,10 @@ class TagPage extends React.Component {
 }
 
 export default TagPage;
+
+// <div className="image">
+//   <img
+//     src={link.preview.image}
+//     alt={link.preview.title}
+//     />
+// </div>
