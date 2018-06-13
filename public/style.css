@@ -7,6 +7,10 @@
   font: AkuraPopo, serif !important;
 }
 
+.star_gold {
+  color: #d99a01;
+}
+
 .word_wrap {
   word-wrap: break-word;
 }
