@@ -17,7 +17,7 @@ class SearchResultsWidget extends React.Component {
               <div>
                 {this.props.results.map(tag => {
                   return (
-                    <div>
+                    <div key={tag.id}>
                       <Link to={`/tags/${tag.id}`}>{tag.title}</Link>
                     </div>
                   );

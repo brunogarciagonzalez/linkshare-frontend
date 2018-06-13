@@ -20,6 +20,7 @@ class LinkSharePage extends React.Component {
   }
 
   componentDidMount() {
+    console.log("inside of componentDidMount");
     // fetch user share given this.props.match.params.shareID
     fetch(`${URL}/user-shares/get`, {
       method: "POST",
@@ -66,7 +67,7 @@ class LinkSharePage extends React.Component {
 
     return (
       <div>
-        <div className="ui grid">
+        <div className="ui grid" id="hello">
           <div className="three wide column" />
           <div className="ten wide column">
             <div className="ui large header centered">View LinkShare</div>
@@ -89,7 +90,7 @@ class LinkSharePage extends React.Component {
 
             <div id="tags">
               <div className="ui medium header left linkshare_blue">Tags</div>
-              {this.state.selectedTags.map(tag => <p>{tag}</p>)}
+              {this.state.selectedTags.map(tag => <p key={tag}>{tag}</p>)}
             </div>
 
             <br />
@@ -99,7 +100,7 @@ class LinkSharePage extends React.Component {
               <div className="ui small header left">Rating</div>
               <p>{this.state.reviewRating}</p>
               <div className="ui small header left">Content</div>
-              <p>{this.state.reviewContent}</p>
+              <p className="word_wrap">{this.state.reviewContent}</p>
             </div>
           </div>
 

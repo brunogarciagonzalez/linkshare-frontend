@@ -112,9 +112,7 @@ class ConstructLinkSharePage extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return (
-        <Redirect push to={`/linkshares/show/${this.state.redirect_to_id}`} />
-      );
+      return <Redirect push to={`/linkshares/${this.state.redirect_to_id}`} />;
     }
     return (
       <div>
