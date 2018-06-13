@@ -8,7 +8,8 @@ import SignUpPage from "./pages/SignUpPage";
 import AboutPage from "./pages/AboutPage";
 import TagDirectoryPage from "./pages/TagDirectoryPage";
 import TagPage from "./pages/TagPage";
-import SuggestTagPage from "./pages/TagPage";
+import SuggestTagPage from "./pages/SuggestTagPage";
+import LinkPage from "./pages/LinkPage";
 import ConstructLinkSharePage from "./pages/ConstructLinkSharePage";
 import LinkSharePage from "./pages/LinkSharePage";
 import EditLinkSharePage from "./pages/EditLinkSharePage";
@@ -35,6 +36,7 @@ class App extends Component {
             <Route exact path="/tags" component={TagDirectoryPage} />
             <Route exact path="/tags/suggest" component={SuggestTagPage} />
             <Route exact path="/tags/:TagID" component={TagPage} />
+            <Route exact path="/links/:LinkID" component={LinkPage} />
             <Route
               exact
               path="/linkshares/construct"
