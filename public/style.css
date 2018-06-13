@@ -8,7 +8,11 @@
 }
 
 .star_gold {
-  color: #d99a01;
+  color: #d99a01 !important;
+}
+
+.star_gold_background {
+  background-color: #d99a01 !important;
 }
 
 .word_wrap {
