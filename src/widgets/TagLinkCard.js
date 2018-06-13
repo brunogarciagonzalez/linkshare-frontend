@@ -1,9 +1,29 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class TagLinkCard extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      showButton: false
+    };
+  }
+
+  toggleCard = () => {
+    this.setState({
+      showButton: !this.state.showButton
+    });
+  };
+
   render() {
     return (
-      <div className="card" key={this.props.link.link.id}>
+      <div
+        className="card"
+        key={this.props.link.link.id}
+        onMouseEnter={this.toggleCard}
+        onMouseLeave={this.toggleCard}
+      >
         <div className="content">
           <div className="header">{this.props.link.preview.title}</div>
           <div className="meta">
@@ -16,13 +36,25 @@ class TagLinkCard extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <span className="right floated">
-            {this.props.link.num_reviews} Reviews
-          </span>
-          <span>
-            <i className="star icon star_gold" />
-            Rating: {this.props.link.avg_rating}/10
-          </span>
+          {!this.state.showButton ? (
+            <div>
+              <span className="right floated">
+                {this.props.link.num_reviews} Reviews
+              </span>
+              <span>
+                <i className="star icon star_gold" />
+                Rating: {this.props.link.avg_rating}/10
+              </span>
+            </div>
+          ) : (
+            <div>
+              <div className="center_text">
+                <Link to={`/links/${this.props.link.link.id}`}>
+                  <span className="star_gold">See Reviews</span>
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
