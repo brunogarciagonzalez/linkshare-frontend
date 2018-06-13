@@ -1,6 +1,7 @@
 import React from "react";
 import SafeBrowsingAPIKey from "../SafeBrowsingAPIKey";
 import LinkPreviewAPIKey from "../LinkPreviewAPIKey";
+import TagLinkCard from "../widgets/TagLinkCard";
 const URL = "http://localhost:3000";
 
 class TagPage extends React.Component {
@@ -109,28 +110,7 @@ class TagPage extends React.Component {
             <div className="ui cards">
               {this.state.links.map(link => {
                 return link.loaded ? (
-                  <div className="card" key={link.link.id}>
-                    <div className="content">
-                      <div className="header">{link.preview.title}</div>
-                      <div className="meta">
-                        <a className="linkshare_blue" href={link.link.url}>
-                          {link.link.url}
-                        </a>
-                      </div>
-                      <div className="description">
-                        Description: "{link.preview.description}"
-                      </div>
-                    </div>
-                    <div className="extra content">
-                      <span className="right floated">
-                        {link.num_reviews} Reviews
-                      </span>
-                      <span>
-                        <i className="star icon star_gold" />
-                        Rating: {link.avg_rating}/10
-                      </span>
-                    </div>
-                  </div>
+                  <TagLinkCard link={link} />
                 ) : (
                   <div className="card" key={link.link.id}>
                     <div className="ui active centered inline loader" />
