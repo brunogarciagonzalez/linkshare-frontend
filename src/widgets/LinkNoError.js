@@ -6,7 +6,7 @@ class LinkNoError extends React.Component {
       <div id="link">
         <div className="ui medium header left linkshare_blue">Link</div>
         <div className="ui fluid labeled input">
-          <div className="ui label">http://</div>
+          <div className="ui label">https://</div>
           <input
             type="text"
             placeholder="example.com"
