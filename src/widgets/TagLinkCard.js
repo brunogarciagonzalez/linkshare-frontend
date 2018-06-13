@@ -39,7 +39,8 @@ class TagLinkCard extends React.Component {
           {!this.state.showButton ? (
             <div>
               <span className="right floated">
-                {this.props.link.num_reviews} Reviews
+                {this.props.link.num_reviews}{" "}
+                {this.props.link.num_reviews > 1 ? "Reviews" : "Review"}
               </span>
               <span>
                 <i className="star icon star_gold" />
