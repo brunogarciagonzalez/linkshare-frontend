@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBarWidget from "./widgets/NavBarWidget";
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
@@ -27,24 +27,30 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <NavBarWidget />
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/signin" component={SignInPage} />
-          <Route exact path="/signup" component={SignUpPage} />
-          <Route exact path="/about" component={AboutPage} />
-          <Route exact path="/tags" component={TagDirectoryPage} />
-          <Route exact path="/tags/suggest" component={SuggestTagPage} />
-          <Route exact path="/tags/:TagID" component={TagPage} />
-          <Route
-            exact
-            path="/linkshares/construct"
-            component={ConstructLinkSharePage}
-          />
-          <Route
-            exact
-            path="/linkshares/edit/:shareID"
-            component={EditLinkSharePage}
-          />
-          <Route exact path="/linkshares/:shareID" component={LinkSharePage} />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/signin" component={SignInPage} />
+            <Route exact path="/signup" component={SignUpPage} />
+            <Route exact path="/about" component={AboutPage} />
+            <Route exact path="/tags" component={TagDirectoryPage} />
+            <Route exact path="/tags/suggest" component={SuggestTagPage} />
+            <Route exact path="/tags/:TagID" component={TagPage} />
+            <Route
+              exact
+              path="/linkshares/construct"
+              component={ConstructLinkSharePage}
+            />
+            <Route
+              exact
+              path="/linkshares/edit/:shareID"
+              component={EditLinkSharePage}
+            />
+            <Route
+              exact
+              path="/linkshares/:shareID"
+              component={LinkSharePage}
+            />
+          </Switch>
         </div>
       </BrowserRouter>
     );
