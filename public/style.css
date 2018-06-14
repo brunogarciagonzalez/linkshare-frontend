@@ -7,6 +7,18 @@
   font: AkuraPopo, serif !important;
 }
 
+.review_tag_padding {
+  padding-right: 15px;
+}
+
+.chart_size {
+  height: 200px;
+  width: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .star_gold {
   color: #d99a01 !important;
 }
@@ -38,6 +50,14 @@
   background-color: #4183c4 !important;
 } */
 
+.inline {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}
+
 .underline {
   text-decoration: underline;
 }
@@ -63,6 +83,14 @@
 .vertical_align {
   display: inline-block;
   vertical-align: middle;
+}
+
+.to_right {
+  float: right;
+}
+
+.to_left {
+  float: left;
 }
 
 .forgot_password {
