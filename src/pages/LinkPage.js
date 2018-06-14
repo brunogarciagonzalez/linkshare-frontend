@@ -1,4 +1,7 @@
 import React from "react";
+import GetStars from "../widgets/GetStars";
+import LinkReviewWidget from "../widgets/LinkReviewWidget";
+import LinkChartWidget from "../widgets/LinkChartWidget";
 import URL from "../URL";
 
 class LinkPage extends React.Component {
@@ -10,7 +13,6 @@ class LinkPage extends React.Component {
       id: null,
       url: null,
       avg_rating: null,
-      avg_rating_stars: null,
       num_reviews: null,
       reviews: []
     };
@@ -27,44 +29,16 @@ class LinkPage extends React.Component {
     })
       .then(r => r.json())
       .then(json => {
-        this.setState(
-          {
-            loaded: true,
-            id: json.link.id,
-            url: json.link.url,
-            avg_rating: json.link.avg_rating,
-            avg_rating_stars: this.getStars(json.link.avg_rating),
-            num_reviews: json.link.num_reviews,
-            reviews: json.link_reviews
-          },
-          () => console.log(this.state)
-        );
+        this.setState({
+          loaded: true,
+          id: json.link.id,
+          url: json.link.url,
+          avg_rating: json.link.avg_rating,
+          num_reviews: json.link.num_reviews,
+          reviews: json.link_reviews
+        });
       });
   }
-
-  getStars = avg_rating => {
-    if (avg_rating === 10) {
-      return "⭐".repeat(10);
-    } else if (avg_rating > 8.95) {
-      return "⭐".repeat(9);
-    } else if (avg_rating > 7.95) {
-      return "⭐".repeat(8);
-    } else if (avg_rating > 6.95) {
-      return "⭐".repeat(7);
-    } else if (avg_rating > 5.95) {
-      return "⭐".repeat(6);
-    } else if (avg_rating > 4.95) {
-      return "⭐".repeat(5);
-    } else if (avg_rating > 3.95) {
-      return "⭐".repeat(4);
-    } else if (avg_rating > 2.95) {
-      return "⭐".repeat(3);
-    } else if (avg_rating > 1.95) {
-      return "⭐".repeat(2);
-    } else {
-      return "⭐".repeat(1);
-    }
-  };
 
   render() {
     return (
@@ -80,17 +54,44 @@ class LinkPage extends React.Component {
             </div>
             <div className="ui medium header centered">
               <div>
-                {this.state.loaded
-                  ? `${this.state.avg_rating_stars} (${
-                      this.state.avg_rating
-                    }) with ${this.state.num_reviews} ${
-                      this.state.num_reviews > 1 ? "reviews" : "review"
-                    }`
-                  : null}
+                <GetStars rating={this.state.avg_rating} />
+              </div>
+              <div>
+                Average Rating:{" "}
+                <span className="star_gold">{this.state.avg_rating}</span>
+              </div>
+              <div>
+                {this.state.num_reviews}{" "}
+                {this.state.num_reviews > 1 ? "Reviews" : "Review"}
               </div>
             </div>
             <br />
             <br />
+            {this.state.loaded ? (
+              <div>
+                <LinkChartWidget
+                  className="column"
+                  reviews={this.state.reviews}
+                  link={this.state.url}
+                />
+                <br />
+                <br />
+
+                <div>
+                  {this.state.reviews.map((review, index) => {
+                    return (
+                      <LinkReviewWidget
+                        num={index + 1}
+                        key={review.review.id}
+                        review={review}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
+              <div className="ui active centered inline loader" />
+            )}
           </div>
           <div className="three wide column" />
         </div>
