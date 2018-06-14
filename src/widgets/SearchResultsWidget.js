@@ -11,7 +11,7 @@ class SearchResultsWidget extends React.Component {
             <div>
               <div>
                 <strong>Searched: {this.props.searched}</strong>
-                <hr />
+                <div class="ui section divider" />
               </div>
 
               <div>
@@ -27,7 +27,7 @@ class SearchResultsWidget extends React.Component {
           ) : (
             <div>
               <strong>Searched: {this.props.searched}</strong>
-              <hr />
+              <div class="ui section divider" />
               <div>No search results.</div>
             </div>
           )
