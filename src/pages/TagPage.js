@@ -108,7 +108,7 @@ class TagPage extends React.Component {
         )
       },
       {
-        menuItem: { key: "messages", icon: "users", content: "Messages" },
+        menuItem: { key: "messages", icon: "users", content: "Discussion" },
         render: () => (
           <Tab.Pane>
             <TagPageCommentsTab />
