@@ -33,8 +33,6 @@ class TagPage extends React.Component {
         });
       })
       .then(meh => {
-        // serialize links into a copy
-        console.log("state:::", this.state);
         let serialized_links = this.state.links.map(linkObj => ({
           url: linkObj.link.url
         }));
@@ -110,7 +108,7 @@ class TagPage extends React.Component {
             <div className="ui cards">
               {this.state.links.map(link => {
                 return link.loaded ? (
-                  <TagLinkCard link={link} />
+                  <TagLinkCard key={link.link.id} link={link} />
                 ) : (
                   <div className="card" key={link.link.id}>
                     <div className="ui active centered inline loader" />
