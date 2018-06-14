@@ -10,10 +10,6 @@ class LinkReviewWidget extends React.Component {
     this.state = { showComments: false };
   }
 
-  componentDidMount() {
-    this.props.review.user_share_tags;
-  }
-
   handleClick = (e, titleProps) => {
     this.setState({ showComments: !this.state.showComments });
   };
