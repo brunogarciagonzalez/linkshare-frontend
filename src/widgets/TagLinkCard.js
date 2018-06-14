@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class TagLinkCard extends React.Component {
   constructor() {
     super();
 
     this.state = {
+      redirect: false,
       showButton: false
     };
   }
@@ -16,18 +17,28 @@ class TagLinkCard extends React.Component {
     });
   };
 
+  handleClick = e => {
+    if (!e.target.classList.contains("link")) {
+      this.setState({ redirect: true });
+    }
+  };
+
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to={`/links/${this.props.link.link.id}`} />;
+    }
     return (
       <div
         className="card"
         key={this.props.link.link.id}
         onMouseEnter={this.toggleCard}
         onMouseLeave={this.toggleCard}
+        onClick={this.handleClick}
       >
         <div className="content">
           <div className="header">{this.props.link.preview.title}</div>
           <div className="meta">
-            <a className="linkshare_blue" href={this.props.link.link.url}>
+            <a className="linkshare_blue link" href={this.props.link.link.url}>
               {this.props.link.link.url}
             </a>
           </div>
