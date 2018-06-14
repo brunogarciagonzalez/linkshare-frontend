@@ -1,7 +1,10 @@
 import React from "react";
+import { Tab } from "semantic-ui-react";
+
 import SafeBrowsingAPIKey from "../SafeBrowsingAPIKey";
 import LinkPreviewAPIKey from "../LinkPreviewAPIKey";
-import TagLinkCard from "../widgets/TagLinkCard";
+import TagPageLinksTab from "../widgets/TagPageLinksTab";
+import TagPageCommentsTab from "../widgets/TagPageCommentsTab";
 import URL from "../URL";
 
 class TagPage extends React.Component {
@@ -95,6 +98,25 @@ class TagPage extends React.Component {
   }
 
   render() {
+    const panes = [
+      {
+        menuItem: { key: "links", icon: "laptop", content: "Links" },
+        render: () => (
+          <Tab.Pane>
+            <TagPageLinksTab links={this.state.links} />
+          </Tab.Pane>
+        )
+      },
+      {
+        menuItem: { key: "messages", icon: "users", content: "Messages" },
+        render: () => (
+          <Tab.Pane>
+            <TagPageCommentsTab />
+          </Tab.Pane>
+        )
+      }
+    ];
+
     return (
       <div>
         <div className="ui grid">
@@ -103,19 +125,8 @@ class TagPage extends React.Component {
             <div className="ui large header centered">
               Tag: <span className="linkshare_blue">{this.state.title}</span>
             </div>
-            <br />
-            <br />
-            <div className="ui cards">
-              {this.state.links.map(link => {
-                return link.loaded ? (
-                  <TagLinkCard key={link.link.id} link={link} />
-                ) : (
-                  <div className="card" key={link.link.id}>
-                    <div className="ui active centered inline loader" />
-                  </div>
-                );
-              })}
-            </div>
+
+            <Tab panes={panes} />
           </div>
           <div className="three wide column" />
         </div>
@@ -125,10 +136,3 @@ class TagPage extends React.Component {
 }
 
 export default TagPage;
-
-// <div className="image">
-//   <img
-//     src={link.preview.image}
-//     alt={link.preview.title}
-//     />
-// </div>
