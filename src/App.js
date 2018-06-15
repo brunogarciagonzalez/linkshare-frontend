@@ -20,7 +20,8 @@ class App extends Component {
 
     this.state = {
       justLoggedIn: false,
-      justRegistered: false
+      justRegistered: false,
+      justLoggedOut: false
     };
   }
 
@@ -40,11 +41,19 @@ class App extends Component {
     }, 2000);
   };
 
+  handleLogOut = () => {
+    this.setState({ justLoggedOut: true });
+
+    window.setTimeout(() => {
+      this.setState({ justLoggedOut: false });
+    }, 2000);
+  };
+
   render() {
     return (
       <BrowserRouter>
         <div>
-          <NavBarWidget />
+          <NavBarWidget handleLogOut={this.handleLogOut} />
           <Switch>
             <Route
               exact
@@ -53,6 +62,7 @@ class App extends Component {
                 <HomePage
                   justLoggedIn={this.state.justLoggedIn}
                   justRegistered={this.state.justRegistered}
+                  justLoggedOut={this.state.justLoggedOut}
                 />
               )}
             />;

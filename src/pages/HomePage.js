@@ -48,6 +48,11 @@ class HomePage extends React.Component {
               </div>
             </div>
           ) : null}
+          {this.props.justLoggedOut ? (
+            <div className="ui yellow compact message">
+              <div className="header">Peace!</div>
+            </div>
+          ) : null}
         </div>
       </div>
     ) : null;
