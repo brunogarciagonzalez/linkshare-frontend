@@ -70,8 +70,7 @@ class ConstructLinkSharePage extends React.Component {
       },
       body: JSON.stringify({
         user_share: {
-          token:
-            "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.ETUYUOkmfnWsWIvA8iBOkE2s1ZQ0V_zgnG_c4QRrhbg",
+          token: localStorage.getItem("token"),
           review_information: {
             content: this.state.reviewContent,
             rating: this.state.reviewRating
