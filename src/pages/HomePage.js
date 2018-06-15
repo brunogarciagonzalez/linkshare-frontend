@@ -8,6 +8,7 @@ class HomePage extends React.Component {
     super();
 
     this.state = {
+      justLoggedIn: false,
       loaded: false,
       tags: []
     };
@@ -25,10 +26,29 @@ class HomePage extends React.Component {
 
   render() {
     return this.state.loaded ? (
-      <div>
-        <SearchWidget tags={this.state.tags} />
+      <div className="ui grid">
+        <div className="three wide column" />
 
-        <TagDirectoryWidget tags={this.state.tags} />
+        <div className="ten wide column">
+          <SearchWidget tags={this.state.tags} />
+
+          <TagDirectoryWidget tags={this.state.tags} />
+        </div>
+        <div className="three wide column">
+          {this.props.justLoggedIn ? (
+            <div className="ui yellow compact message">
+              <div className="header">Welcome back!</div>
+            </div>
+          ) : null}
+          {this.props.justRegistered ? (
+            <div className="ui yellow compact message">
+              <div className="header">
+                Registration succesful.
+                <br />Welcome!
+              </div>
+            </div>
+          ) : null}
+        </div>
       </div>
     ) : null;
   }

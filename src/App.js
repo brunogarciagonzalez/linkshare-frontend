@@ -19,9 +19,26 @@ class App extends Component {
     super();
 
     this.state = {
-      user: null
+      justLoggedIn: false,
+      justRegistered: false
     };
   }
+
+  handleNewSignIn = () => {
+    this.setState({ justLoggedIn: true });
+
+    window.setTimeout(() => {
+      this.setState({ justLoggedIn: false });
+    }, 2000);
+  };
+
+  handleSignUp = () => {
+    this.setState({ justRegistered: true });
+
+    window.setTimeout(() => {
+      this.setState({ justRegistered: false });
+    }, 2000);
+  };
 
   render() {
     return (
@@ -29,9 +46,28 @@ class App extends Component {
         <div>
           <NavBarWidget />
           <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/signin" component={SignInPage} />
-            <Route exact path="/signup" component={SignUpPage} />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <HomePage
+                  justLoggedIn={this.state.justLoggedIn}
+                  justRegistered={this.state.justRegistered}
+                />
+              )}
+            />;
+            <Route
+              exact
+              path="/signin"
+              render={() => (
+                <SignInPage handleNewSignIn={this.handleNewSignIn} />
+              )}
+            />;
+            <Route
+              exact
+              path="/signup"
+              render={() => <SignUpPage handleSignUp={this.handleSignUp} />}
+            />;
             <Route exact path="/about" component={AboutPage} />
             <Route exact path="/tags" component={TagDirectoryPage} />
             <Route exact path="/tags/suggest" component={SuggestTagPage} />
@@ -60,7 +96,7 @@ class App extends Component {
 }
 
 export default App;
-
+//
 // <Route
 //   exact
 //   path="/construct-linkshare"

@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 class NavBarWidget extends React.Component {
+  handleSignOut = () => {
+    localStorage.removeItem("token");
+  };
+
   render() {
     return (
       <div className="ui segment">
@@ -30,17 +34,33 @@ class NavBarWidget extends React.Component {
           </div>
 
           <div className="four wide column right aligned right_navtext vertical_align">
-            <div className="ui secondary menu">
-              <div className="item">
-                <Link to="/signin">Sign In</Link>
+            {localStorage.token ? (
+              <div className="ui secondary menu">
+                <div className="item">
+                  <Link to="/dashboard">Dashboard</Link>
+                </div>
+                <div className="item">
+                  <Link to="/" onClick={this.handleSignOut}>
+                    Sign Out
+                  </Link>
+                </div>
+                <div className="item">
+                  <Link to="/about">About</Link>
+                </div>
               </div>
-              <div className="item">
-                <Link to="/signup">Sign Up</Link>
+            ) : (
+              <div className="ui secondary menu">
+                <div className="item">
+                  <Link to="/signin">Sign In</Link>
+                </div>
+                <div className="item">
+                  <Link to="/signup">Sign Up</Link>
+                </div>
+                <div className="item">
+                  <Link to="/about">About</Link>
+                </div>
               </div>
-              <div className="item">
-                <Link to="/about">About</Link>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
