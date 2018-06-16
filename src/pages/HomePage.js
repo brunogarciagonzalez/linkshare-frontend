@@ -43,7 +43,7 @@ class HomePage extends React.Component {
           {this.props.justRegistered ? (
             <div className="ui yellow compact message">
               <div className="header">
-                Registration succesful.
+                Registration successful.
                 <br />Welcome!
               </div>
             </div>
