@@ -32,7 +32,11 @@ class LinkReviewWidget extends React.Component {
         <div className="block">
           <span className="bold">Tags:</span>{" "}
           {this.props.review.user_share_tags.map(tag => (
-            <Link className="review_tag_padding" to={`/tags/${tag.id}`}>
+            <Link
+              key={tag.id}
+              className="review_tag_padding"
+              to={`/tags/${tag.id}`}
+            >
               {tag.title}
             </Link>
           ))}
