@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ConstructLinkShareModal from "./ConstructLinkShareModal";
 
 class NavBarWidget extends React.Component {
   handleSignOut = () => {
@@ -42,9 +43,7 @@ class NavBarWidget extends React.Component {
               <div className="ui secondary menu">
                 <div className="right menu">
                   <div className="item">
-                    <Link to="/linkshares/construct">
-                      <span className="star_gold bold">New Linkshare</span>
-                    </Link>
+                    <ConstructLinkShareModal />
                   </div>
                   <div className="item">
                     <Link to="/tags/suggest">Suggest Tag</Link>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon, Button, Header, Modal } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import LinkError from "../widgets/LinkError";
 import LinkNoError from "../widgets/LinkNoError";
@@ -8,11 +9,12 @@ import ReviewError from "../widgets/ReviewError";
 import ReviewNoError from "../widgets/ReviewNoError";
 import URL from "../URL";
 
-class ConstructLinkSharePage extends React.Component {
+class ConstructLinkShareModal extends React.Component {
   constructor() {
     super();
 
     this.state = {
+      modalOpen: false,
       redirect: false,
       redirect_to_id: null,
       tagDropdownOptions: [],
@@ -26,6 +28,10 @@ class ConstructLinkSharePage extends React.Component {
       reviewErrors: []
     };
   }
+
+  handleOpen = () => this.setState({ modalOpen: true });
+
+  handleClose = () => this.setState({ modalOpen: false });
 
   componentDidMount() {
     fetch(`${URL}/tags`)
@@ -45,6 +51,7 @@ class ConstructLinkSharePage extends React.Component {
         });
       });
   }
+
   handleLinkUrl = e => {
     this.setState({ linkUrl: e.target.value });
   };
@@ -113,61 +120,87 @@ class ConstructLinkSharePage extends React.Component {
     if (this.state.redirect) {
       return <Redirect push to={`/linkshares/${this.state.redirect_to_id}`} />;
     }
+
     return (
-      <div>
-        {this.state.linkErrors.length > 0 ? (
-          <LinkError
-            linkUrl={this.state.linkUrl}
-            handleLinkUrl={this.handleLinkUrl}
-          />
-        ) : (
-          <LinkNoError
-            linkUrl={this.state.linkUrl}
-            handleLinkUrl={this.handleLinkUrl}
-          />
-        )}
-        <br />
+      <Modal
+        trigger={
+          <span
+            className="star_gold bold custom_modal"
+            onClick={this.handleOpen}
+          >
+            New LinkShare
+          </span>
+        }
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+        centered={false}
+        size="large"
+        closeIcon
+      >
+        <Modal.Header className="center_text">New LinkShare</Modal.Header>
+        <Modal.Content scrolling>
+          <Modal.Description>
+            <div>
+              {this.state.linkErrors.length > 0 ? (
+                <LinkError
+                  linkUrl={this.state.linkUrl}
+                  handleLinkUrl={this.handleLinkUrl}
+                />
+              ) : (
+                <LinkNoError
+                  linkUrl={this.state.linkUrl}
+                  handleLinkUrl={this.handleLinkUrl}
+                />
+              )}
+              <br />
 
-        {this.state.tagError ? (
-          <TagsError
-            tagDropdownOptions={this.state.tagDropdownOptions}
-            handleTagsDropDown={this.handleTagsDropDown}
-            selectedTags={this.state.selectedTags}
-          />
-        ) : (
-          <TagsNoError
-            tagDropdownOptions={this.state.tagDropdownOptions}
-            handleTagsDropDown={this.handleTagsDropDown}
-            selectedTags={this.state.selectedTags}
-          />
-        )}
-        <br />
+              {this.state.tagError ? (
+                <TagsError
+                  tagDropdownOptions={this.state.tagDropdownOptions}
+                  handleTagsDropDown={this.handleTagsDropDown}
+                  selectedTags={this.state.selectedTags}
+                />
+              ) : (
+                <TagsNoError
+                  tagDropdownOptions={this.state.tagDropdownOptions}
+                  handleTagsDropDown={this.handleTagsDropDown}
+                  selectedTags={this.state.selectedTags}
+                />
+              )}
+              <br />
 
-        {this.state.reviewErrors.length > 0 ? (
-          <ReviewError
-            reviewRatingDropdownOptions={this.state.reviewRatingDropdownOptions}
-            handleReviewRatingDropdown={this.handleReviewRatingDropdown}
-            handleReviewContent={this.handleReviewContent}
-            reviewContent={this.state.reviewContent}
-            reviewRating={this.state.reviewRating}
-          />
-        ) : (
-          <ReviewNoError
-            reviewRatingDropdownOptions={this.state.reviewRatingDropdownOptions}
-            handleReviewRatingDropdown={this.handleReviewRatingDropdown}
-            handleReviewContent={this.handleReviewContent}
-            reviewContent={this.state.reviewContent}
-            reviewRating={this.state.reviewRating}
-          />
-        )}
-        <br />
-        <br />
-        <button className="ui fluid button" onClick={this.handleSubmit}>
-          Share
-        </button>
-      </div>
+              {this.state.reviewErrors.length > 0 ? (
+                <ReviewError
+                  reviewRatingDropdownOptions={
+                    this.state.reviewRatingDropdownOptions
+                  }
+                  handleReviewRatingDropdown={this.handleReviewRatingDropdown}
+                  handleReviewContent={this.handleReviewContent}
+                  reviewContent={this.state.reviewContent}
+                  reviewRating={this.state.reviewRating}
+                />
+              ) : (
+                <ReviewNoError
+                  reviewRatingDropdownOptions={
+                    this.state.reviewRatingDropdownOptions
+                  }
+                  handleReviewRatingDropdown={this.handleReviewRatingDropdown}
+                  handleReviewContent={this.handleReviewContent}
+                  reviewContent={this.state.reviewContent}
+                  reviewRating={this.state.reviewRating}
+                />
+              )}
+            </div>
+          </Modal.Description>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button primary onClick={this.handleSubmit}>
+            Share
+          </Button>
+        </Modal.Actions>
+      </Modal>
     );
   }
 }
 
-export default ConstructLinkSharePage;
+export default ConstructLinkShareModal;

@@ -3,6 +3,27 @@
   src: url(/Akura-Popo-2/Akura-Popo.otf);
 }
 
+.dimmed.dimmable > .ui.animating.dimmer,
+.dimmed.dimmable > .ui.visible.dimmer,
+.ui.active.dimmer {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+.ui.modal,
+.ui.active.modal {
+  margin: 0 auto !important;
+  margin-top: 50px !important;
+  top: auto !important;
+  left: auto !important;
+  transform-origin: center !important;
+  transition: all ease 0.5s;
+}
+
+.custom_modal:hover {
+  cursor: pointer;
+}
+
 .akura {
   font: AkuraPopo, serif !important;
 }

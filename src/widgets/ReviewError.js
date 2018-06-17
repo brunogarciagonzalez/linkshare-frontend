@@ -20,7 +20,7 @@ class ReviewError extends React.Component {
         <div className="ui form error">
           <div className="field">
             <textarea
-              rows="5"
+              rows="2"
               onChange={this.props.handleReviewContent}
               value={this.props.reviewContent}
               className="custom_error"
