@@ -21,7 +21,10 @@ class LinkReviewWidget extends React.Component {
         <br />
         <p>
           <span className="to_left bold">
-            Author: {this.props.review.reviewer.username}
+            Author:{" "}
+            <Link to={`/users/${this.props.review.reviewer.id}`}>
+              {this.props.review.reviewer.username}
+            </Link>
           </span>
           <span className="to_right bold">
             Last Update: {this.props.review.review.updated_at.split("T")[0]}
@@ -69,7 +72,10 @@ class LinkReviewWidget extends React.Component {
                       <div key={comment.id} className="ui segment">
                         <p>
                           <span className="to_left bold">
-                            Author: {comment.review_commenter.username}
+                            Author:{" "}
+                            <Link to={`/users/${comment.review_commenter.id}`}>
+                              {comment.review_commenter.username}
+                            </Link>
                           </span>
                           <span className="to_right bold">
                             Last Update: {comment.updated_at.split("T")[0]}
