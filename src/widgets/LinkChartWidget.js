@@ -62,9 +62,22 @@ class LinkChartWidget extends React.Component {
               yAxes: [
                 {
                   display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Average Rating"
+                  },
                   ticks: {
                     beginAtZero: true,
                     suggestedMax: 10
+                  }
+                }
+              ],
+              xAxes: [
+                {
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Number of Reviews"
                   }
                 }
               ]
