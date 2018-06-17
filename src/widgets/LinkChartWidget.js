@@ -35,7 +35,9 @@ class LinkChartWidget extends React.Component {
             labels: this.state.x_axis,
             datasets: [
               {
-                label: `Rating as Reviews Added for ${this.props.link}`,
+                label: `Change in Rating as Reviews Added, for ${
+                  this.props.link
+                }`,
                 data: this.state.y_axis,
                 max: 10,
                 min: 1,

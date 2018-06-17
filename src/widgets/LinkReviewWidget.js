@@ -28,11 +28,15 @@ class LinkReviewWidget extends React.Component {
           </span>
         </p>
 
-        <div class="ui section divider" />
+        <div className="ui section divider" />
         <div className="block">
           <span className="bold">Tags:</span>{" "}
           {this.props.review.user_share_tags.map(tag => (
-            <Link className="review_tag_padding" to={`/tags/${tag.id}`}>
+            <Link
+              key={tag.id}
+              className="review_tag_padding"
+              to={`/tags/${tag.id}`}
+            >
               {tag.title}
             </Link>
           ))}
@@ -71,13 +75,13 @@ class LinkReviewWidget extends React.Component {
                             Last Update: {comment.updated_at.split("T")[0]}
                           </span>
                         </p>
-                        <div class="ui section divider" />
+                        <div className="ui section divider" />
                         <p>{comment.content}</p>
                         {!(
                           this.props.review.review_comments.length ===
                           index + 1
                         ) ? (
-                          <div class="ui section divider" />
+                          <div className="ui section divider" />
                         ) : null}
                       </div>
                     );

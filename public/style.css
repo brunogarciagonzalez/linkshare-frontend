@@ -37,6 +37,10 @@
   color: #9f3a38 !important;
 }
 
+.error_red {
+  color: #9f3a38 !important;
+}
+
 .bold {
   font-weight: bolder;
 }
@@ -58,6 +62,9 @@
   display: block;
 }
 
+.align_right {
+  text-align: right;
+}
 .underline {
   text-decoration: underline;
 }
@@ -83,6 +90,10 @@
 .vertical_align {
   display: inline-block;
   vertical-align: middle;
+}
+
+.clearfix {
+  overflow: auto;
 }
 
 .to_right {
