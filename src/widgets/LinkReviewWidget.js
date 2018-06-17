@@ -49,7 +49,7 @@ class LinkReviewWidget extends React.Component {
         </div>
         <br />
         <p className="bold">Content:</p>
-        <p>{this.props.review.review.content}</p>
+        <p className="word_wrap">{this.props.review.review.content}</p>
 
         {this.props.review.review_comments.length > 0 ? (
           <div>
