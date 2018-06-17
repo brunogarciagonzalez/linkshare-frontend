@@ -106,10 +106,14 @@ class ConstructLinkShareModal extends React.Component {
             reviewErrors
           });
         } else if (json.status === "success") {
-          this.setState({
-            redirect_to_id: json.user_share_id,
-            redirect: true
-          });
+          this.setState(
+            {
+              redirect_to_id: json.user_share_id,
+              redirect: true,
+              modalOpen: false
+            },
+            () => this.setState({ redirect: false })
+          );
         } else {
           alert("There was an error processing your request");
         }
@@ -120,7 +124,6 @@ class ConstructLinkShareModal extends React.Component {
     if (this.state.redirect) {
       return <Redirect push to={`/linkshares/${this.state.redirect_to_id}`} />;
     }
-
     return (
       <Modal
         trigger={
