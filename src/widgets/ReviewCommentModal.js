@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Modal } from "semantic-ui-react";
-import { Redirect } from "react-router-dom";
 import URL from "../URL";
 
 class ReviewCommentModal extends React.Component {
@@ -20,7 +19,6 @@ class ReviewCommentModal extends React.Component {
   handleClose = () =>
     this.setState({
       modalOpen: false,
-      redirect: false,
       content: "",
       contentError: false
     });
@@ -49,12 +47,6 @@ class ReviewCommentModal extends React.Component {
         if (json.status === "failure") {
           this.setState({ contentError: true });
         } else if (json.status === "success") {
-          this.setState(
-            {
-              redirect: true
-            },
-            () => this.setState({ redirect: false })
-          );
           this.handleClose();
           this.props.handleNewReviewComment();
         } else {
@@ -64,9 +56,6 @@ class ReviewCommentModal extends React.Component {
   };
 
   render() {
-    if (this.state.redirect) {
-      <Redirect to="" />;
-    }
     return (
       <Modal
         trigger={
