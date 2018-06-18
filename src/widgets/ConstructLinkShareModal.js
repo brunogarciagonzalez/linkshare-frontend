@@ -128,6 +128,7 @@ class ConstructLinkShareModal extends React.Component {
             },
             () => this.setState({ redirect: false })
           );
+          this.props.handleNewShare();
         } else {
           alert("There was an error processing your request");
         }

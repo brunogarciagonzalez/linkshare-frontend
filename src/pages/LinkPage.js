@@ -6,8 +6,8 @@ import ReviewThisLinkModal from "../widgets/ReviewThisLinkModal";
 import URL from "../URL";
 
 class LinkPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       loaded: false,
@@ -83,7 +83,10 @@ class LinkPage extends React.Component {
             <br />
             {localStorage.token ? (
               <div className="center_text">
-                <ReviewThisLinkModal link={this.state.url} />
+                <ReviewThisLinkModal
+                  handleNewShare={this.props.handleNewShare}
+                  link={this.state.url}
+                />
               </div>
             ) : null}
             <br />
@@ -101,7 +104,7 @@ class LinkPage extends React.Component {
                   {this.state.reviews.map((review, index) => {
                     return (
                       <LinkReviewWidget
-                        handleNewReviewComment={this.handleNewReviewComment}
+                        handleNewComment={this.props.handleNewComment}
                         num={index + 1}
                         key={review.review.id}
                         review={review}
@@ -114,7 +117,13 @@ class LinkPage extends React.Component {
               <div className="ui active centered inline loader" />
             )}
           </div>
-          <div className="three wide column" />
+          <div className="three wide column">
+            {this.props.justCommented ? (
+              <div className="ui yellow compact message">
+                <div className="header">Booyah!</div>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     );

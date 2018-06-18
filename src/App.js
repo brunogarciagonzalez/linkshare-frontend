@@ -21,7 +21,9 @@ class App extends Component {
     this.state = {
       justLoggedIn: false,
       justRegistered: false,
-      justLoggedOut: false
+      justLoggedOut: false,
+      justShared: false,
+      justCommented: false
     };
   }
 
@@ -49,11 +51,30 @@ class App extends Component {
     }, 2000);
   };
 
+  handleNewShare = () => {
+    this.setState({ justShared: true });
+
+    window.setTimeout(() => {
+      this.setState({ justShared: false });
+    }, 2000);
+  };
+
+  handleNewComment = () => {
+    this.setState({ justCommented: true });
+
+    window.setTimeout(() => {
+      this.setState({ justCommented: false });
+    }, 2000);
+  };
+
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
         <div>
-          <NavBarWidget handleLogOut={this.handleLogOut} />
+          <NavBarWidget
+            handleLogOut={this.handleLogOut}
+            handleNewShare={this.handleNewShare}
+          />
           <Switch>
             <Route
               exact
@@ -82,7 +103,18 @@ class App extends Component {
             <Route exact path="/tags" component={TagDirectoryPage} />
             <Route exact path="/tags/suggest" component={SuggestTagPage} />
             <Route exact path="/tags/:TagID" component={TagPage} />
-            <Route exact path="/links/:LinkID" component={LinkPage} />
+            <Route
+              exact
+              path="/links/:LinkID"
+              render={({ match }) => (
+                <LinkPage
+                  handleNewShare={this.handleNewShare}
+                  handleNewComment={this.handleNewComment}
+                  justCommented={this.state.justCommented}
+                  match={match}
+                />
+              )}
+            />
             <Route
               exact
               path="/linkshares/construct"
@@ -96,7 +128,12 @@ class App extends Component {
             <Route
               exact
               path="/linkshares/:shareID"
-              component={LinkSharePage}
+              render={({ match }) => (
+                <LinkSharePage
+                  match={match}
+                  justShared={this.state.justShared}
+                />
+              )}
             />
           </Switch>
         </div>
@@ -106,9 +143,3 @@ class App extends Component {
 }
 
 export default App;
-//
-// <Route
-//   exact
-//   path="/construct-linkshare"
-//   render={() => <ConstructLinkSharePage allTags={this.state.allTags} />}
-// />;

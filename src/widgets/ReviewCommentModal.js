@@ -48,7 +48,7 @@ class ReviewCommentModal extends React.Component {
           this.setState({ contentError: true });
         } else if (json.status === "success") {
           this.handleClose();
-          this.props.handleNewReviewComment();
+          this.props.handleNewComment();
         } else {
           alert("There was an error processing your request");
         }

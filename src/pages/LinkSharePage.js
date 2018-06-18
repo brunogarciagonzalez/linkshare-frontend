@@ -120,7 +120,13 @@ class LinkSharePage extends React.Component {
             </div>
           </div>
 
-          <div className="three wide column" />
+          <div className="three wide column">
+            {this.props.justShared ? (
+              <div className="ui yellow compact message">
+                <div className="header">Booyah!</div>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     );

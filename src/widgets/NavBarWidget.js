@@ -43,7 +43,9 @@ class NavBarWidget extends React.Component {
               <div className="ui secondary menu">
                 <div className="right menu">
                   <div className="item">
-                    <ConstructLinkShareModal />
+                    <ConstructLinkShareModal
+                      handleNewShare={this.props.handleNewShare}
+                    />
                   </div>
                   <div className="item">
                     <Link to="/tags/suggest">Suggest Tag</Link>
