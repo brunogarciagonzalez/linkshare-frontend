@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Button, Header, Modal } from "semantic-ui-react";
+import { Button, Modal } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import LinkError from "../widgets/LinkError";
 import LinkNoError from "../widgets/LinkNoError";
@@ -31,7 +31,21 @@ class ConstructLinkShareModal extends React.Component {
 
   handleOpen = () => this.setState({ modalOpen: true });
 
-  handleClose = () => this.setState({ modalOpen: false });
+  handleClose = () =>
+    this.setState({
+      modalOpen: false,
+      redirect: false,
+      redirect_to_id: null,
+      tagDropdownOptions: [],
+      reviewRatingDropdownOptions: [],
+      linkUrl: "",
+      selectedTags: [],
+      reviewContent: "",
+      reviewRating: null,
+      linkErrors: [],
+      tagError: null,
+      reviewErrors: []
+    });
 
   componentDidMount() {
     fetch(`${URL}/tags`)
@@ -126,6 +140,7 @@ class ConstructLinkShareModal extends React.Component {
     }
     return (
       <Modal
+        className={"custom_modal"}
         trigger={
           <span
             className="star_gold bold custom_modal"
