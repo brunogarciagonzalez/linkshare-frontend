@@ -38,7 +38,6 @@ class LinkSharePage extends React.Component {
         if (json.status === "success") {
           console.log("linkshare:", json);
           let user_share = json.user_share;
-          let tagTitles = user_share.tags.map(tag => tag.title);
 
           this.setState({
             loaded: true,
@@ -46,7 +45,7 @@ class LinkSharePage extends React.Component {
             author: user_share.user,
             date: user_share.date.split("T")[0],
             linkUrl: user_share.link.url,
-            selectedTags: tagTitles,
+            selectedTags: user_share.tags,
             reviewRating: user_share.review.rating,
             reviewContent: user_share.review.content
           });
@@ -103,7 +102,11 @@ class LinkSharePage extends React.Component {
 
             <div id="tags">
               <div className="ui medium header left linkshare_blue">Tags</div>
-              {this.state.selectedTags.map(tag => <p key={tag}>{tag}</p>)}
+              {this.state.selectedTags.map(tag => (
+                <p key={tag.id}>
+                  <Link to={`/tags/${tag.id}`}>{tag.title}</Link>
+                </p>
+              ))}
             </div>
 
             <br />
