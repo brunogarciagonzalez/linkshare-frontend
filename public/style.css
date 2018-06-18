@@ -98,6 +98,11 @@
   text-align: center;
 }
 
+.center_inline {
+  margig-left: auto;
+  margig-right: auto;
+}
+
 .logo_size {
   font-size: 1.5em;
 }
