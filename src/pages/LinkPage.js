@@ -19,7 +19,7 @@ class LinkPage extends React.Component {
     };
   }
 
-  componentDidMount() {
+  fetcher = () => {
     fetch(`${URL}/links/get`, {
       method: "POST",
       headers: {
@@ -39,7 +39,15 @@ class LinkPage extends React.Component {
           reviews: json.link_reviews
         });
       });
+  };
+
+  componentDidMount() {
+    this.fetcher();
   }
+
+  handleNewReviewComment = () => {
+    this.fetcher();
+  };
 
   render() {
     if (!this.state.loaded) {
@@ -93,6 +101,7 @@ class LinkPage extends React.Component {
                   {this.state.reviews.map((review, index) => {
                     return (
                       <LinkReviewWidget
+                        handleNewReviewComment={this.handleNewReviewComment}
                         num={index + 1}
                         key={review.review.id}
                         review={review}

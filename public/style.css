@@ -20,6 +20,10 @@
   transition: all ease 0.5s;
 }
 
+.full_width {
+  width: 100%;
+}
+
 .custom_modal:hover {
   cursor: pointer;
 }

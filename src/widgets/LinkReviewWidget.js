@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Accordion, Icon } from "semantic-ui-react";
+import { Accordion, Icon, Header } from "semantic-ui-react";
 import GetStars from "../widgets/GetStars";
+import ReviewCommentModal from "../widgets/ReviewCommentModal";
 
 class LinkReviewWidget extends React.Component {
   constructor() {
@@ -17,7 +18,22 @@ class LinkReviewWidget extends React.Component {
   render() {
     return (
       <div className="ui segment">
-        <h3 className="ui top attached header center_text">Review</h3>
+        <h3 className="ui top attached header center_text">
+          <div className="ui grid vertical_align">
+            <div className="three wide column" />
+            <div className="ten wide column">
+              <Header>Review</Header>
+            </div>
+            <div className="three wide column">
+              <ReviewCommentModal
+                className="inline to_right"
+                handleNewReviewComment={this.props.handleNewReviewComment}
+                reviewID={this.props.review.review.id}
+                linkID={this.props.review.review.link_id}
+              />
+            </div>
+          </div>
+        </h3>
         <br />
         <p>
           <span className="to_left bold">
@@ -83,12 +99,6 @@ class LinkReviewWidget extends React.Component {
                         </p>
                         <div className="ui section divider" />
                         <p>{comment.content}</p>
-                        {!(
-                          this.props.review.review_comments.length ===
-                          index + 1
-                        ) ? (
-                          <div className="ui section divider" />
-                        ) : null}
                       </div>
                     );
                   })}
