@@ -58,6 +58,10 @@
   color: #9f3a38 !important;
 }
 
+.loader_push_down {
+  padding-top: 300px;
+}
+
 .error_red {
   color: #9f3a38 !important;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import URL from "../URL";
 
 class LinkSharePage extends React.Component {
@@ -7,6 +7,7 @@ class LinkSharePage extends React.Component {
     super();
 
     this.state = {
+      loaded: false,
       found: null,
       redirect: false,
       author: null,
@@ -33,12 +34,14 @@ class LinkSharePage extends React.Component {
     })
       .then(r => r.json())
       .then(json => {
+        debugger;
         if (json.status === "success") {
           console.log("linkshare:", json);
           let user_share = json.user_share;
           let tagTitles = user_share.tags.map(tag => tag.title);
 
           this.setState({
+            loaded: true,
             found: true,
             author: user_share.user,
             date: user_share.date.split("T")[0],
@@ -64,6 +67,12 @@ class LinkSharePage extends React.Component {
       return <Redirect push to="/" />;
     }
 
+    if (!this.state.loaded) {
+      return (
+        <div className="ui active centered loader loader_push_down block" />
+      );
+    }
+
     return (
       <div>
         <div className="ui grid" id="hello">
@@ -74,7 +83,12 @@ class LinkSharePage extends React.Component {
             <div id="author">
               <div className="ui medium header left linkshare_blue">Author</div>
 
-              <p>By: {this.state.author}</p>
+              <p>
+                By:{" "}
+                <Link to={`/users/${this.state.author.id}`}>
+                  {this.state.author.username}
+                </Link>
+              </p>
               <p>Last Update: {this.state.date}</p>
             </div>
 
