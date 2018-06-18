@@ -2,6 +2,7 @@ import React from "react";
 import GetStars from "../widgets/GetStars";
 import LinkReviewWidget from "../widgets/LinkReviewWidget";
 import LinkChartWidget from "../widgets/LinkChartWidget";
+import ReviewThisLinkModal from "../widgets/ReviewThisLinkModal";
 import URL from "../URL";
 
 class LinkPage extends React.Component {
@@ -41,6 +42,12 @@ class LinkPage extends React.Component {
   }
 
   render() {
+    if (!this.state.loaded) {
+      return (
+        <div className="ui active centered loader loader_push_down block" />
+      );
+    }
+
     return (
       <div>
         <div className="ui grid">
@@ -66,6 +73,11 @@ class LinkPage extends React.Component {
               </div>
             </div>
             <br />
+            {localStorage.token ? (
+              <div className="center_text">
+                <ReviewThisLinkModal link={this.state.url} />
+              </div>
+            ) : null}
             <br />
             {this.state.loaded ? (
               <div>
