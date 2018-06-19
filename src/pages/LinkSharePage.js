@@ -34,7 +34,6 @@ class LinkSharePage extends React.Component {
     })
       .then(r => r.json())
       .then(json => {
-        debugger;
         if (json.status === "success") {
           console.log("linkshare:", json);
           let user_share = json.user_share;

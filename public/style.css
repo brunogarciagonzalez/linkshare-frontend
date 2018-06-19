@@ -3,6 +3,14 @@
   src: url(/Akura-Popo-2/Akura-Popo.otf);
 }
 
+.divider_less_margin_top {
+  margin-top: 1rem !important;
+}
+
+.side_margins {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .dimmed.dimmable > .ui.animating.dimmer,
 .dimmed.dimmable > .ui.visible.dimmer,
 .ui.active.dimmer {
