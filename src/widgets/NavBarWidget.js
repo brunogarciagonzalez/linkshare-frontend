@@ -54,12 +54,12 @@ class NavBarWidget extends React.Component {
                     <Link to="/dashboard">Dashboard</Link>
                   </div>
                   <div className="item">
+                    <Link to="/about">About</Link>
+                  </div>
+                  <div className="item">
                     <Link to="/" onClick={this.handleSignOut}>
                       Sign Out
                     </Link>
-                  </div>
-                  <div className="item">
-                    <Link to="/about">About</Link>
                   </div>
                 </div>
               </div>
