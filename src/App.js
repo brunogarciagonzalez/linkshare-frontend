@@ -13,6 +13,7 @@ import LinkPage from "./pages/LinkPage";
 import ConstructLinkSharePage from "./pages/ConstructLinkSharePage";
 import LinkSharePage from "./pages/LinkSharePage";
 import EditLinkSharePage from "./pages/EditLinkSharePage";
+import DashboardPage from "./pages/DashboardPage";
 
 class App extends Component {
   constructor() {
@@ -100,6 +101,7 @@ class App extends Component {
               render={() => <SignUpPage handleSignUp={this.handleSignUp} />}
             />;
             <Route exact path="/about" component={AboutPage} />
+            <Route exact path="/dashboard" component={DashboardPage} />
             <Route exact path="/tags" component={TagDirectoryPage} />
             <Route exact path="/tags/suggest" component={SuggestTagPage} />
             <Route exact path="/tags/:TagID" component={TagPage} />

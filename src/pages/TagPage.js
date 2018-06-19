@@ -125,6 +125,7 @@ class TagPage extends React.Component {
             <div className="ui large header centered">
               Tag: <span className="linkshare_blue">{this.state.title}</span>
             </div>
+            <div className="ui section divider" />
 
             <Tab panes={panes} />
           </div>

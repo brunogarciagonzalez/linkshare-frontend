@@ -17,10 +17,6 @@ class HomePage extends React.Component {
   componentDidMount() {
     fetch(`${URL}/tags`)
       .then(r => r.json())
-      .then(json => {
-        console.log("json", json);
-        return json;
-      })
       .then(json => this.setState({ tags: json["tags"], loaded: true }));
   }
 
