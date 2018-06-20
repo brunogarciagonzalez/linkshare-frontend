@@ -54,10 +54,7 @@ class DashboardPage extends React.Component {
           <div className="ten wide column">
             {this.state.loaded ? (
               <div className="ui segment">
-                <div className="ui large header centered">
-                  <span className="linkshare_blue">{`Your Dashboard ${", " +
-                    this.state.username}`}</span>
-                </div>
+                <div className="ui large header centered">Your Dashboard</div>
                 <div className="ui section divider divider_less_margin_top" />
                 <div className="center_text">
                   <div className="ui statistic inline center_inline">

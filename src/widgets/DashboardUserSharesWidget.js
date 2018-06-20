@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Accordion, Icon, Header } from "semantic-ui-react";
 import GetStars from "./GetStars";
+import DashboardUserShareCommentsWidget from "./DashboardUserShareCommentsWidget";
 import URL from "../URL";
 
 class DashboardUserSharesWidget extends React.Component {
@@ -81,6 +82,9 @@ class DashboardUserSharesWidget extends React.Component {
                     </p>
                     <p className="bold">Content:</p>
                     <p className="word_wrap">{linkshare.content}</p>
+                    {linkshare.review_comments.length > 0 ? (
+                      <DashboardUserShareCommentsWidget linkshare={linkshare} />
+                    ) : null}
                   </div>
                 );
               })}

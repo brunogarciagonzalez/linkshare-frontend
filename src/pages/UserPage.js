@@ -10,6 +10,7 @@ class UserPage extends React.Component {
     this.state = {
       loaded: false,
       username: null,
+      memberSince: null,
       linkshareCount: null,
       linkshares: [],
       reviewCommentCount: null,
@@ -35,6 +36,7 @@ class UserPage extends React.Component {
         this.setState(
           {
             username: json.user.username,
+            memberSince: json.user.created_at.split("T")[0],
             linkshareCount: json.linkshares.length,
             linkshares: json.linkshares,
             reviewCommentCount: json.num_review_comments,
@@ -44,6 +46,35 @@ class UserPage extends React.Component {
         );
       });
   }
+
+  getMonth = num => {
+    switch (num) {
+      case "01":
+        return "January";
+      case "02":
+        return "February";
+      case "03":
+        return "March";
+      case "04":
+        return "April";
+      case "05":
+        return "May";
+      case "06":
+        return "June";
+      case "07":
+        return "July";
+      case "08":
+        return "August";
+      case "09":
+        return "September";
+      case "10":
+        return "October";
+      case "11":
+        return "November";
+      case "12":
+        return "December";
+    }
+  };
 
   render() {
     return (
@@ -109,13 +140,12 @@ class UserPage extends React.Component {
 
 export default UserPage;
 
-// <div class="statistic">
-//   <div class="value">
-//     <img
-//       src="/images/avatar/small/joe.jpg"
-//       class="ui circular inline image"
-//       />
-//     42
+// <div className="ui statistic inline center_inline">
+//   <div className="label">Member Since</div>
+//   <div className="text value linkshare_blue">
+//     {this.state.memberSince.split("-")[2]}{" "}
+//     {this.getMonth(this.state.memberSince.split("-")[1])}
+//     <br />
+//     {this.state.memberSince.split("-")[0]}
 //   </div>
-//   <div class="label">Team Members</div>
 // </div>

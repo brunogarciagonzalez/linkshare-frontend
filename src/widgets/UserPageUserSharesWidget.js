@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Accordion, Icon, Header } from "semantic-ui-react";
 import GetStars from "./GetStars";
+import UserPageUserShareCommentsWidget from "./UserPageUserShareCommentsWidget";
 import URL from "../URL";
 
 class UserPageUserSharesWidget extends React.Component {
@@ -74,6 +75,10 @@ class UserPageUserSharesWidget extends React.Component {
                     </p>
                     <p className="bold">Content:</p>
                     <p className="word_wrap">{linkshare.content}</p>
+
+                    {linkshare.review_comments.length > 0 ? (
+                      <UserPageUserShareCommentsWidget linkshare={linkshare} />
+                    ) : null}
                   </div>
                 );
               })}
