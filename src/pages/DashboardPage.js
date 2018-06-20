@@ -1,4 +1,3 @@
-// should serve as dashboard too? so this will be linked to <Route "/dashboard"/> and < Route "/users/:ID" />
 import React from "react";
 import URL from "../URL";
 import DashboardUserSharesWidget from "../widgets/DashboardUserSharesWidget";
