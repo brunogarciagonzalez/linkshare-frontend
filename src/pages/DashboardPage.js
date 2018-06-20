@@ -1,12 +1,14 @@
 import React from "react";
 import URL from "../URL";
 import DashboardUserSharesWidget from "../widgets/DashboardUserSharesWidget";
+import { Redirect } from "react-router-dom";
 
 class DashboardPage extends React.Component {
   constructor() {
     super();
 
     this.state = {
+      notLoggedIn: false,
       loaded: false,
       username: null,
       linkshareCount: null,
@@ -21,6 +23,10 @@ class DashboardPage extends React.Component {
   };
 
   componentDidMount() {
+    if (!localStorage.getItem("token")) {
+      this.setState({ notLoggedIn: true });
+      return;
+    }
     fetch(`${URL}/users/get_dashboard`, {
       method: "POST",
       headers: {
@@ -45,6 +51,9 @@ class DashboardPage extends React.Component {
   }
 
   render() {
+    if (this.state.notLoggedIn) {
+      return <Redirect push to={`/signin`} />;
+    }
     return (
       <div>
         <div className="ui grid">

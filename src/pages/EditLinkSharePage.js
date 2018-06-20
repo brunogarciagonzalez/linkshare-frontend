@@ -13,6 +13,8 @@ class EditLinkSharePage extends React.Component {
     super();
 
     this.state = {
+      notLoggedIn: false,
+      wrongUser: false,
       id: null,
       redirectToShow: false,
       redirectToDashboard: false,
@@ -29,6 +31,10 @@ class EditLinkSharePage extends React.Component {
   }
 
   componentDidMount() {
+    if (!localStorage.getItem("token")) {
+      this.setState({ notLoggedIn: true });
+      return;
+    }
     fetch(`${URL}/tags`)
       .then(r => r.json())
       .then(json => {
@@ -60,13 +66,18 @@ class EditLinkSharePage extends React.Component {
       .then(json => {
         let user_share = json.user_share;
 
-        this.setState({
-          id: user_share.id,
-          linkUrl: user_share.link.url.split("//")[1],
-          selectedTags: user_share.tags.map(tag => tag.title),
-          reviewRating: user_share.review.rating,
-          reviewContent: user_share.review.content
-        });
+        if (user_share.user.id !== json.current_user_id) {
+          this.setState({ wrongUser: true });
+          this.props.handleHackAttempt();
+        } else {
+          this.setState({
+            id: user_share.id,
+            linkUrl: user_share.link.url.split("//")[1],
+            selectedTags: user_share.tags.map(tag => tag.title),
+            reviewRating: user_share.review.rating,
+            reviewContent: user_share.review.content
+          });
+        }
       });
   }
 
@@ -153,6 +164,12 @@ class EditLinkSharePage extends React.Component {
   };
 
   render() {
+    if (this.state.notLoggedIn) {
+      return <Redirect push to={`/signin`} />;
+    }
+    if (this.state.wrongUser) {
+      return <Redirect push to={`/`} />;
+    }
     if (this.state.redirectToShow) {
       return <Redirect push to={`/linkshares/${this.state.id}`} />;
     }

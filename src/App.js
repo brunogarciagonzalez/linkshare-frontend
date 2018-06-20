@@ -15,6 +15,7 @@ import ConstructLinkSharePage from "./pages/ConstructLinkSharePage";
 import LinkSharePage from "./pages/LinkSharePage";
 import EditLinkSharePage from "./pages/EditLinkSharePage";
 import DashboardPage from "./pages/DashboardPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 class App extends Component {
   constructor() {
@@ -27,7 +28,8 @@ class App extends Component {
       justShared: false,
       justCommented: false,
       justUpdated: false,
-      justDeleted: false
+      justDeleted: false,
+      justTriedToHack: false
     };
   }
 
@@ -87,6 +89,14 @@ class App extends Component {
     }, 2000);
   };
 
+  handleHackAttempt = () => {
+    this.setState({ justTriedToHack: true });
+
+    window.setTimeout(() => {
+      this.setState({ justTriedToHack: false });
+    }, 2000);
+  };
+
   render() {
     return (
       <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
@@ -104,6 +114,7 @@ class App extends Component {
                   justLoggedIn={this.state.justLoggedIn}
                   justRegistered={this.state.justRegistered}
                   justLoggedOut={this.state.justLoggedOut}
+                  justTriedToHack={this.state.justTriedToHack}
                 />
               )}
             />;
@@ -130,6 +141,11 @@ class App extends Component {
             />
             <Route exact path="/tags" component={TagDirectoryPage} />
             <Route exact path="/tags/suggest" component={SuggestTagPage} />
+            <Route
+              exact
+              path="/forgot-password"
+              component={ForgotPasswordPage}
+            />
             <Route exact path="/tags/:TagID" component={TagPage} />
             <Route
               exact
@@ -155,6 +171,7 @@ class App extends Component {
                 <EditLinkSharePage
                   handleNewUpdate={this.handleNewUpdate}
                   handleNewDelete={this.handleNewDelete}
+                  handleHackAttempt={this.handleHackAttempt}
                   match={match}
                 />
               )}

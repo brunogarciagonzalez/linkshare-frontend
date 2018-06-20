@@ -13,6 +13,7 @@ class ConstructLinkSharePage extends React.Component {
     super();
 
     this.state = {
+      notLoggedIn: false,
       redirect: false,
       redirect_to_id: null,
       tagDropdownOptions: [],
@@ -28,6 +29,10 @@ class ConstructLinkSharePage extends React.Component {
   }
 
   componentDidMount() {
+    if (!localStorage.getItem("token")) {
+      this.setState({ notLoggedIn: true });
+      return;
+    }
     fetch(`${URL}/tags`)
       .then(r => r.json())
       .then(json => {
@@ -110,6 +115,9 @@ class ConstructLinkSharePage extends React.Component {
   };
 
   render() {
+    if (this.state.notLoggedIn) {
+      return <Redirect push to={`/signin`} />;
+    }
     if (this.state.redirect) {
       return <Redirect push to={`/linkshares/${this.state.redirect_to_id}`} />;
     }

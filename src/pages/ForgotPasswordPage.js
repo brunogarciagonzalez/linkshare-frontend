@@ -1,6 +1,6 @@
 import React from "react";
 
-class SuggestTagPage extends React.Component {
+class ForgotPassworfPage extends React.Component {
   constructor() {
     super();
 
@@ -12,4 +12,4 @@ class SuggestTagPage extends React.Component {
   }
 }
 
-export default SuggestTagPage;
+export default ForgotPassworfPage;

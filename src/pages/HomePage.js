@@ -49,6 +49,11 @@ class HomePage extends React.Component {
               <div className="header">Peace!</div>
             </div>
           ) : null}
+          {this.props.justTriedToHack ? (
+            <div className="ui yellow compact message">
+              <div className="header">Unauthorized!</div>
+            </div>
+          ) : null}
         </div>
       </div>
     ) : null;

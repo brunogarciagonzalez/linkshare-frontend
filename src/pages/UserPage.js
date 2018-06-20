@@ -72,6 +72,8 @@ class UserPage extends React.Component {
         return "November";
       case "12":
         return "December";
+      default:
+        return null;
     }
   };
 

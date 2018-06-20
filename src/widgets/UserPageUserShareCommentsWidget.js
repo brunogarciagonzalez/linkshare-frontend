@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Accordion, Icon, Header } from "semantic-ui-react";
+import { Accordion, Icon } from "semantic-ui-react";
 
 class UserPageUserShareCommentsWidget extends React.Component {
   constructor() {

@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Accordion, Icon, Header } from "semantic-ui-react";
+import { Accordion, Icon } from "semantic-ui-react";
 import GetStars from "./GetStars";
 import UserPageUserShareCommentsWidget from "./UserPageUserShareCommentsWidget";
-import URL from "../URL";
 
 class UserPageUserSharesWidget extends React.Component {
   constructor() {
