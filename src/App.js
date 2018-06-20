@@ -29,7 +29,8 @@ class App extends Component {
       justCommented: false,
       justUpdated: false,
       justDeleted: false,
-      justTriedToHack: false
+      justTriedToHack: false,
+      justAddedLinkToTag: false
     };
   }
 
@@ -97,6 +98,14 @@ class App extends Component {
     }, 2000);
   };
 
+  handleNewLinkForTag = () => {
+    this.setState({ justAddedLinkToTag: true });
+
+    window.setTimeout(() => {
+      this.setState({ justAddedLinkToTag: false });
+    }, 2000);
+  };
+
   render() {
     return (
       <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
@@ -146,7 +155,17 @@ class App extends Component {
               path="/forgot-password"
               component={ForgotPasswordPage}
             />
-            <Route exact path="/tags/:TagID" component={TagPage} />
+            <Route
+              exact
+              path="/tags/:TagID"
+              render={({ match }) => (
+                <TagPage
+                  handleNewLinkForTag={this.handleNewLinkForTag}
+                  justAddedLinkToTag={this.state.justAddedLinkToTag}
+                  match={match}
+                />
+              )}
+            />
             <Route
               exact
               path="/links/:LinkID"
