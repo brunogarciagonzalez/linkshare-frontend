@@ -1,4 +1,5 @@
 import React from "react";
+import { Sticky } from "semantic-ui-react";
 import GetStars from "../widgets/GetStars";
 import LinkReviewWidget from "../widgets/LinkReviewWidget";
 import LinkChartWidget from "../widgets/LinkChartWidget";
@@ -120,9 +121,11 @@ class LinkPage extends React.Component {
           </div>
           <div className="three wide column">
             {this.props.justCommented ? (
-              <div className="ui yellow compact message">
-                <div className="header">Booyah!</div>
-              </div>
+              <Sticky>
+                <div className="ui yellow compact message divider_less_margin_top">
+                  <div className="header">Booyah!</div>
+                </div>
+              </Sticky>
             ) : null}
           </div>
         </div>
