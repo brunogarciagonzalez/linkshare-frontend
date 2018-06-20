@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import AboutPage from "./pages/AboutPage";
+import UserPage from "./pages/UserPage";
 import TagDirectoryPage from "./pages/TagDirectoryPage";
 import TagPage from "./pages/TagPage";
 import SuggestTagPage from "./pages/SuggestTagPage";
@@ -119,6 +120,7 @@ class App extends Component {
               render={() => <SignUpPage handleSignUp={this.handleSignUp} />}
             />;
             <Route exact path="/about" component={AboutPage} />
+            <Route exact path="/users/:UserID" component={UserPage} />
             <Route
               exact
               path="/dashboard"
