@@ -24,7 +24,9 @@ class App extends Component {
       justRegistered: false,
       justLoggedOut: false,
       justShared: false,
-      justCommented: false
+      justCommented: false,
+      justUpdated: false,
+      justDeleted: false
     };
   }
 
@@ -68,6 +70,22 @@ class App extends Component {
     }, 2000);
   };
 
+  handleNewUpdate = () => {
+    this.setState({ justUpdated: true });
+
+    window.setTimeout(() => {
+      this.setState({ justUpdated: false });
+    }, 2000);
+  };
+
+  handleNewDelete = () => {
+    this.setState({ justDeleted: true });
+
+    window.setTimeout(() => {
+      this.setState({ justDeleted: false });
+    }, 2000);
+  };
+
   render() {
     return (
       <BrowserRouter onUpdate={() => window.scrollTo(0, 0)}>
@@ -101,7 +119,13 @@ class App extends Component {
               render={() => <SignUpPage handleSignUp={this.handleSignUp} />}
             />;
             <Route exact path="/about" component={AboutPage} />
-            <Route exact path="/dashboard" component={DashboardPage} />
+            <Route
+              exact
+              path="/dashboard"
+              render={() => (
+                <DashboardPage justDeleted={this.state.justDeleted} />
+              )}
+            />
             <Route exact path="/tags" component={TagDirectoryPage} />
             <Route exact path="/tags/suggest" component={SuggestTagPage} />
             <Route exact path="/tags/:TagID" component={TagPage} />
@@ -125,7 +149,13 @@ class App extends Component {
             <Route
               exact
               path="/linkshares/edit/:shareID"
-              component={EditLinkSharePage}
+              render={({ match }) => (
+                <EditLinkSharePage
+                  handleNewUpdate={this.handleNewUpdate}
+                  handleNewDelete={this.handleNewDelete}
+                  match={match}
+                />
+              )}
             />
             <Route
               exact
@@ -134,6 +164,7 @@ class App extends Component {
                 <LinkSharePage
                   match={match}
                   justShared={this.state.justShared}
+                  justUpdated={this.state.justUpdated}
                 />
               )}
             />

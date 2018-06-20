@@ -15,18 +15,6 @@ class DashboardUserSharesWidget extends React.Component {
     this.setState({ showComments: !this.state.showComments });
   };
 
-  handleDestroyRequest = linkshare_id => {
-    fetch(`${URL}/user-shares/destroy`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({ "user-share": { id: linkshare_id } })
-    })
-      .then(r => r.json())
-      .then(console.log);
-  };
   render() {
     return (
       <div>
@@ -54,26 +42,13 @@ class DashboardUserSharesWidget extends React.Component {
                         </span>
                       </div>
 
-                      <div className="four wide column">
+                      <div className="four wide column center_text">
                         <Link
-                          className="star_gold to_left"
+                          className="star_gold"
                           to={`/linkshares/edit/${linkshare.id}`}
                         >
                           EDIT
                         </Link>
-
-                        <span className="bold inline center_inline side_margins">
-                          {"//"}
-                        </span>
-
-                        <span
-                          className="star_gold custom_modal"
-                          onClick={linkshare =>
-                            this.handleDestroyRequest(linkshare.id)
-                          }
-                        >
-                          DELETE
-                        </span>
                       </div>
 
                       <div className="six wide column">

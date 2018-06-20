@@ -32,6 +32,12 @@
   width: 100%;
 }
 
+.delete_button {
+  background-color: #9f3a38 !important;
+  border-color: #9f3a38 !important;
+  color: white !important;
+}
+
 .custom_modal:hover {
   cursor: pointer;
 }

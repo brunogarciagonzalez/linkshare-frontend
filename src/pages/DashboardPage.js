@@ -94,7 +94,13 @@ class DashboardPage extends React.Component {
               <div className="ui active centered loader loader_push_down" />
             )}
           </div>
-          <div className="three wide column" />
+          <div className="three wide column">
+            {this.props.justDeleted ? (
+              <div className="ui yellow compact message">
+                <div className="header">Deletion Successful!</div>
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     );

@@ -125,6 +125,11 @@ class LinkSharePage extends React.Component {
                 <div className="header">Booyah!</div>
               </div>
             ) : null}
+            {this.props.justUpdated ? (
+              <div className="ui yellow compact message">
+                <div className="header">Update Successful!</div>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

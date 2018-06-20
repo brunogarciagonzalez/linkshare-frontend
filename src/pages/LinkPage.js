@@ -47,6 +47,7 @@ class LinkPage extends React.Component {
 
   handleNewReviewComment = () => {
     this.fetcher();
+    this.props.handleNewComment();
   };
 
   render() {
@@ -104,7 +105,7 @@ class LinkPage extends React.Component {
                   {this.state.reviews.map((review, index) => {
                     return (
                       <LinkReviewWidget
-                        handleNewComment={this.props.handleNewComment}
+                        handleNewComment={this.handleNewReviewComment}
                         num={index + 1}
                         key={review.review.id}
                         review={review}

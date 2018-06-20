@@ -14,7 +14,8 @@ class EditLinkSharePage extends React.Component {
 
     this.state = {
       id: null,
-      redirect: false,
+      redirectToShow: false,
+      redirectToDashboard: false,
       tagDropdownOptions: [],
       reviewRatingDropdownOptions: [],
       linkUrl: "",
@@ -126,17 +127,37 @@ class EditLinkSharePage extends React.Component {
           });
         } else if (json.status === "success") {
           this.setState({
-            redirect: true
+            redirectToShow: true
           });
+          this.props.handleNewUpdate();
         } else {
           alert("There was an error processing your request");
         }
       });
   };
 
+  handleDelete = () => {
+    fetch(`${URL}/user-shares/destroy`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ user_share: { id: this.state.id } })
+    })
+      .then(r => r.json())
+      .then(meh => {
+        this.setState({ redirectToDashboard: true });
+        this.props.handleNewDelete();
+      });
+  };
+
   render() {
-    if (this.state.redirect) {
+    if (this.state.redirectToShow) {
       return <Redirect push to={`/linkshares/${this.state.id}`} />;
+    }
+    if (this.state.redirectToDashboard) {
+      return <Redirect push to={`/dashboard`} />;
     }
     return (
       <div>
@@ -199,8 +220,18 @@ class EditLinkSharePage extends React.Component {
             <div className="ui grid">
               <div className="five wide column" />
               <div className="six wide column">
-                <button className="ui fluid button" onClick={this.handleSubmit}>
-                  Share
+                <button
+                  className="ui fluid button primary"
+                  onClick={this.handleSubmit}
+                >
+                  Update
+                </button>
+                <br />
+                <button
+                  className="ui fluid button delete_button"
+                  onClick={this.handleDelete}
+                >
+                  Delete
                 </button>
               </div>
               <div className="five wide column" />
