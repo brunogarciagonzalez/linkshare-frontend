@@ -2,7 +2,11 @@ import React from "react";
 
 class TagPageCommentsTab extends React.Component {
   render() {
-    return <div>Under construction...</div>;
+    return (
+      <div>
+        Real-time discussion powered by WebSockets is under construction...
+      </div>
+    );
   }
 }
 
