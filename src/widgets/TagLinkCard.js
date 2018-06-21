@@ -36,14 +36,22 @@ class TagLinkCard extends React.Component {
         onClick={this.handleClick}
       >
         <div className="content">
-          <div className="header">{this.props.link.preview.title}</div>
+          <div className="header">
+            {this.props.link.preview.title
+              ? this.props.link.preview.title
+              : this.props.link.link.url}
+          </div>
           <div className="meta">
             <a className="linkshare_blue link" href={this.props.link.link.url}>
               {this.props.link.link.url}
             </a>
           </div>
           <div className="description">
-            Description: "{this.props.link.preview.description}"
+            {this.props.link.preview.description.includes("Invalid") ||
+            this.props.link.preview.description === "" ||
+            this.props.link.preview.description.includes("Too many requests")
+              ? "A description for this website is not available at this time."
+              : `"${this.props.link.preview.description}"`}
           </div>
         </div>
         <div className="extra content">
