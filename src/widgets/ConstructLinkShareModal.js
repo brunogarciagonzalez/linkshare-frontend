@@ -29,7 +29,10 @@ class ConstructLinkShareModal extends React.Component {
     };
   }
 
-  handleOpen = () => this.setState({ modalOpen: true });
+  handleOpen = () => {
+    this.setState({ modalOpen: true });
+    this.fetcher();
+  };
 
   handleClose = () =>
     this.setState({
@@ -47,7 +50,7 @@ class ConstructLinkShareModal extends React.Component {
       reviewErrors: []
     });
 
-  componentDidMount() {
+  fetcher = () => {
     fetch(`${URL}/tags`)
       .then(r => r.json())
       .then(json => {
@@ -64,6 +67,9 @@ class ConstructLinkShareModal extends React.Component {
           reviewRatingDropdownOptions: reviewRatingDDOptions
         });
       });
+  };
+  componentDidMount() {
+    this.fetcher();
   }
 
   handleLinkUrl = e => {
@@ -126,7 +132,19 @@ class ConstructLinkShareModal extends React.Component {
               redirect: true,
               modalOpen: false
             },
-            () => this.setState({ redirect: false })
+            () =>
+              this.setState({
+                modalOpen: false,
+                redirect: false,
+                redirect_to_id: null,
+                linkUrl: "",
+                selectedTags: [],
+                reviewContent: "",
+                reviewRating: null,
+                linkErrors: [],
+                tagError: null,
+                reviewErrors: []
+              })
           );
           this.props.handleNewShare();
         } else {
