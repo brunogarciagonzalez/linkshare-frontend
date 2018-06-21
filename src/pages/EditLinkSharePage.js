@@ -15,6 +15,7 @@ class EditLinkSharePage extends React.Component {
     this.state = {
       notLoggedIn: false,
       wrongUser: false,
+      found: true,
       id: null,
       redirectToShow: false,
       redirectToDashboard: false,
@@ -59,23 +60,32 @@ class EditLinkSharePage extends React.Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        user_share: { id: this.props.match.params.shareID }
+        user_share: {
+          id: this.props.match.params.shareID,
+          token: localStorage.getItem("token")
+        }
       })
     })
       .then(r => r.json())
       .then(json => {
-        let user_share = json.user_share;
+        if (json.status === "success") {
+          let user_share = json.user_share;
 
-        if (user_share.user.id !== json.current_user_id) {
-          this.setState({ wrongUser: true });
-          this.props.handleHackAttempt();
+          if (user_share.user.id !== user_share.current_user_id) {
+            this.setState({ wrongUser: true });
+            this.props.handleHackAttempt();
+          } else {
+            this.setState({
+              id: user_share.id,
+              linkUrl: user_share.link.url.split("//")[1],
+              selectedTags: user_share.tags.map(tag => tag.title),
+              reviewRating: user_share.review.rating,
+              reviewContent: user_share.review.content
+            });
+          }
         } else {
           this.setState({
-            id: user_share.id,
-            linkUrl: user_share.link.url.split("//")[1],
-            selectedTags: user_share.tags.map(tag => tag.title),
-            reviewRating: user_share.review.rating,
-            reviewContent: user_share.review.content
+            found: "false"
           });
         }
       });
@@ -164,6 +174,9 @@ class EditLinkSharePage extends React.Component {
   };
 
   render() {
+    if (this.state.found === "false") {
+      return <h1>Not Found</h1>;
+    }
     if (this.state.notLoggedIn) {
       return <Redirect push to={`/signin`} />;
     }
