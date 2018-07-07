@@ -66,7 +66,13 @@ class LinkPage extends React.Component {
             <div className="ui large header centered">
               Link:{" "}
               <span className="linkshare_blue">
-                <a href={this.state.url}>{this.state.url}</a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={this.state.url}
+                >
+                  {this.state.url}
+                </a>
               </span>
             </div>
             <div className="ui medium header centered">

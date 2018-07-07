@@ -42,7 +42,12 @@ class TagLinkCard extends React.Component {
               : this.props.link.link.url}
           </div>
           <div className="meta">
-            <a className="linkshare_blue link" href={this.props.link.link.url}>
+            <a
+              className="linkshare_blue link"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={this.props.link.link.url}
+            >
               {this.props.link.link.url}
             </a>
           </div>
