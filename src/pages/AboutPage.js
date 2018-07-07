@@ -22,7 +22,9 @@ class AboutPage extends React.Component {
             <ol>
               <li>The now-gone Yahoo! Directory,</li>
               <li>The frontpage of the internet: Reddit, and</li>
-              <li>Amazon product reviews</li>
+              <li>
+                Amazon and Steam product reviews and review management logic
+              </li>
             </ol>
             <p>
               These three concepts are fused to produce a directory of the
@@ -34,14 +36,12 @@ class AboutPage extends React.Component {
             </p>
             <p>
               In the end, it is an attempt at ‘community-based internet
-              exploration’, a concept I came up with to differentiate this idea
+              exploration’, a term I came up with to differentiate this idea
               from crawler-based search engines as a means to navigate the
-              internet. The product is akin to having access to the locals and
-              their opinions when it comes to experiencing a new country, as
-              opposed to experiencing the country via conventional tours. At
-              some point, after goin through the tourist-experience many times
-              over, you may want to discover the hidden gems of the world wide
-              web.
+              internet. It is very similar to the original attempts at indexing
+              the world wide web, with many additional features centered around
+              user-generated content and extending the user experience beyond
+              anchor tags.
             </p>
             <p>-- Bruno Garcia Gonzalez, June 2018</p>
             <p>
