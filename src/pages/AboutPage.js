@@ -45,9 +45,41 @@ class AboutPage extends React.Component {
             </p>
             <p>-- Bruno Garcia Gonzalez, June 2018</p>
             <p>
-              <a href="https://www.linkedin.com/in/garcia-gonzalez">LinkedIn</a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.linkedin.com/in/garcia-gonzalez"
+              >
+                LinkedIn Profile
+              </a>
               {" // "}
-              <a href="https://github.com/brunogarciagonzalez">GitHub</a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/brunogarciagonzalez"
+              >
+                GitHub Profile
+              </a>
+            </p>
+            <br />
+            <br />
+            <br />
+            <p className="center_text">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/brunogarciagonzalez/linkshare-frontend"
+              >
+                Project Front End Code
+              </a>
+              {" // "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/brunogarciagonzalez/linkshare-backend"
+              >
+                Project Back End Code
+              </a>
             </p>
           </div>
         </div>
