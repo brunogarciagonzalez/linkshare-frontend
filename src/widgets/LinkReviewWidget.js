@@ -25,12 +25,14 @@ class LinkReviewWidget extends React.Component {
               <Header>Review</Header>
             </div>
             <div className="three wide column">
-              <ReviewCommentModal
-                className="inline to_right"
-                handleNewComment={this.props.handleNewComment}
-                reviewID={this.props.review.review.id}
-                linkID={this.props.review.review.link_id}
-              />
+              {localStorage.getItem("token") ? (
+                <ReviewCommentModal
+                  className="inline to_right"
+                  handleNewComment={this.props.handleNewComment}
+                  reviewID={this.props.review.review.id}
+                  linkID={this.props.review.review.link_id}
+                />
+              ) : null}
             </div>
           </div>
         </h3>
