@@ -8,7 +8,10 @@ class LinkReviewWidget extends React.Component {
   constructor() {
     super();
 
-    this.state = { showComments: false };
+    this.state = {
+      showComments: false,
+      helpfulnessVote: false
+    };
   }
 
   handleAccordionClick = (e, titleProps) => {
@@ -77,27 +80,30 @@ class LinkReviewWidget extends React.Component {
         <p className="word_wrap">{this.props.review.review.content}</p>
         <div className="ui section divider" />
         <p>X people found this review helpful</p>
-        <p className="bold">
-          Was this review helpful?{" "}
-          <button
-            id="yes_helpful"
-            className="vote_button"
-            onClick={this.handleHelpfulClick}
-          >
-            <i id="yes_helpful" className="thumbs up outline icon" /> Yes
-          </button>
-          <button
-            id="no_helpful"
-            className="vote_button"
-            onClick={this.handleHelpfulClick}
-          >
-            <i id="no_helpful" className="thumbs down outline icon" /> No
-          </button>
-        </p>
+        {this.state.helpfulnessVote ? (
+          <p className="success_green">
+            <i className="check icon" />Thank you for your feedback.
+          </p>
+        ) : (
+          <p className="bold">
+            Was this review helpful?{" "}
+            <button
+              id="yes_helpful"
+              className="vote_button"
+              onClick={this.handleHelpfulClick}
+            >
+              <i id="yes_helpful" className="thumbs up outline icon" /> Yes
+            </button>
+            <button
+              id="no_helpful"
+              className="vote_button"
+              onClick={this.handleHelpfulClick}
+            >
+              <i id="no_helpful" className="thumbs down outline icon" /> No
+            </button>
+          </p>
+        )}
 
-        <p className="success_green">
-          <i className="check icon" />Thank you for your feedback.
-        </p>
         {this.props.review.review_comments.length > 0 ? (
           <div>
             <Accordion>
