@@ -147,6 +147,11 @@
   font-size: 1.5em;
 }
 
+.navbar_corners {
+  border-radius: 0px !important;
+  border-top-style: hidden !important;
+}
+
 .left_navtext {
   display: inline-block;
   vertical-align: middle;

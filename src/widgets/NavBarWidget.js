@@ -10,7 +10,7 @@ class NavBarWidget extends React.Component {
 
   render() {
     return (
-      <div className="ui segment">
+      <div className="ui segment navbar_corners">
         <div className="ui grid">
           <div className="two wide column vertical_align">
             <div className="ui secondary menu">

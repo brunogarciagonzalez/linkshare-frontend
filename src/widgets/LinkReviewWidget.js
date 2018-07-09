@@ -10,6 +10,7 @@ class LinkReviewWidget extends React.Component {
     super();
 
     this.state = {
+      reviewIsByCurrentUser: false,
       notLoggedIn: false,
       showComments: false,
       userVoted: false,
@@ -36,7 +37,8 @@ class LinkReviewWidget extends React.Component {
       .then(json => {
         this.setState({
           numHelpfulVotes: json.helpful_votes,
-          userVoted: json.current_user_voted
+          userVoted: json.current_user_voted,
+          reviewIsByCurrentUser: json.review_is_by_current_user
         });
       });
   }
@@ -51,6 +53,8 @@ class LinkReviewWidget extends React.Component {
     //     # :review_id,
     //     # :token
     // # }
+    e.persist();
+
     if (!localStorage.getItem("token")) {
       this.setState({ notLoggedIn: true });
       return;
@@ -82,7 +86,22 @@ class LinkReviewWidget extends React.Component {
       })
     })
       .then(r => r.json())
-      .then(console.log);
+      .then(json => {
+        // if status === "success"
+        // update state   userVoted: true, numHelpfulVotes: x + 1??
+        if (json.status === "success") {
+          this.props.handleNewReviewVote();
+          this.setState({
+            userVoted: true,
+            numHelpfulVotes:
+              e.target.id === "yes_helpful"
+                ? this.state.numHelpfulVotes + 1
+                : this.state.numHelpfulVotes
+          });
+        } else {
+          alert("An error occurred.");
+        }
+      });
   };
 
   render() {
@@ -154,28 +173,33 @@ class LinkReviewWidget extends React.Component {
                 } people found this review helpful`}
           </p>
         ) : null}
-        {this.state.userVoted ? (
-          <p className="success_green">
-            <i className="check icon" />Thank you for your feedback.
-          </p>
-        ) : (
-          <p className="bold">
-            Was this review helpful?{" "}
-            <button
-              id="yes_helpful"
-              className="vote_button"
-              onClick={this.handleHelpfulClick}
-            >
-              <i id="yes_helpful" className="thumbs up outline icon" /> Yes
-            </button>
-            <button
-              id="no_helpful"
-              className="vote_button"
-              onClick={this.handleHelpfulClick}
-            >
-              <i id="no_helpful" className="thumbs down outline icon" /> No
-            </button>
-          </p>
+
+        {this.state.reviewIsByCurrentUser ? null : (
+          <div>
+            {this.state.userVoted ? (
+              <p className="success_green">
+                <i className="check icon" />Thank you for your feedback.
+              </p>
+            ) : (
+              <p className="bold">
+                Was this review helpful?{" "}
+                <button
+                  id="yes_helpful"
+                  className="vote_button"
+                  onClick={this.handleHelpfulClick}
+                >
+                  <i id="yes_helpful" className="thumbs up outline icon" /> Yes
+                </button>
+                <button
+                  id="no_helpful"
+                  className="vote_button"
+                  onClick={this.handleHelpfulClick}
+                >
+                  <i id="no_helpful" className="thumbs down outline icon" /> No
+                </button>
+              </p>
+            )}
+          </div>
         )}
 
         {this.props.review.review_comments.length > 0 ? (
