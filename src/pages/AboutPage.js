@@ -62,23 +62,60 @@ class AboutPage extends React.Component {
               </a>
             </p>
             <br />
-            <br />
-            <br />
-            <p className="center_text">
+
+            <center>
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://github.com/brunogarciagonzalez/linkshare-frontend"
+                href="https://rubyonrails.org/"
               >
-                Project Front End Code
+                <img
+                  className="about_img"
+                  alt={"ReactJS logo"}
+                  src={require(`../images/rails.png`)}
+                />
               </a>
-              {" // "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://reactjs.org/"
+              >
+                <img
+                  className="about_img"
+                  alt={"ReactJS logo"}
+                  src={require(`../images/react.png`)}
+                />
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://semantic-ui.com/"
+              >
+                <img
+                  className="about_img"
+                  alt={"ReactJS logo"}
+                  src={require(`../images/semantic_ui.png`)}
+                />
+              </a>
+            </center>
+            <br />
+            <br />
+
+            <p className="center_text">
               <a
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://github.com/brunogarciagonzalez/linkshare-backend"
               >
                 Project Back End Code
+              </a>
+              {" // "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/brunogarciagonzalez/linkshare-frontend"
+              >
+                Project Front End Code
               </a>
             </p>
           </div>
