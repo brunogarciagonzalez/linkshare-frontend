@@ -51,6 +51,11 @@ class LinkPage extends React.Component {
     this.props.handleNewComment();
   };
 
+  handleNewReviewVote = () => {
+    this.fetcher();
+    this.props.handleNewReviewVote();
+  };
+
   render() {
     if (!this.state.loaded) {
       return (
@@ -113,8 +118,11 @@ class LinkPage extends React.Component {
                     return (
                       <LinkReviewWidget
                         handleNewComment={this.handleNewReviewComment}
+                        handleNewReviewVote={this.handleNewReviewVote}
                         num={index + 1}
                         key={review.review.id}
+                        reviewID={review.review.id}
+                        reviewerID={review.reviewer.id}
                         review={review}
                       />
                     );
@@ -126,13 +134,22 @@ class LinkPage extends React.Component {
             )}
           </div>
           <div className="three wide column">
-            {this.props.justCommented ? (
-              <Sticky>
-                <div className="ui yellow compact message divider_less_margin_top">
-                  <div className="header">Booyah!</div>
-                </div>
-              </Sticky>
-            ) : null}
+            <div className="ui rail">
+              {this.props.justCommented ? (
+                <Sticky>
+                  <div className="ui yellow compact message divider_less_margin_top">
+                    <div className="header">Booyah!</div>
+                  </div>
+                </Sticky>
+              ) : null}
+              {this.props.justVoted ? (
+                <Sticky>
+                  <div className="ui yellow compact message divider_less_margin_top">
+                    <div className="header">Gracias!</div>
+                  </div>
+                </Sticky>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

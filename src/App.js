@@ -30,7 +30,8 @@ class App extends Component {
       justUpdated: false,
       justDeleted: false,
       justTriedToHack: false,
-      justAddedLinkToTag: false
+      justAddedLinkToTag: false,
+      justVoted: false
     };
   }
 
@@ -87,6 +88,14 @@ class App extends Component {
 
     window.setTimeout(() => {
       this.setState({ justDeleted: false });
+    }, 2000);
+  };
+
+  handleNewReviewVote = () => {
+    this.setState({ justVoted: true });
+
+    window.setTimeout(() => {
+      this.setState({ justVoted: false });
     }, 2000);
   };
 
@@ -174,6 +183,8 @@ class App extends Component {
                   handleNewShare={this.handleNewShare}
                   handleNewComment={this.handleNewComment}
                   justCommented={this.state.justCommented}
+                  handleNewReviewVote={this.handleNewReviewVote}
+                  justVoted={this.state.justVoted}
                   match={match}
                 />
               )}
