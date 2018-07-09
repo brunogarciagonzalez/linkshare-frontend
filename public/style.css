@@ -3,6 +3,18 @@
   src: url(/Akura-Popo-2/Akura-Popo.otf);
 }
 
+.about_img {
+  height: 125px;
+  margin: 0px 20px;
+}
+.about_img:hover {
+  border: 2px solid #4183c4 !important;
+}
+
+.about_img:active {
+  border: 2px solid #d99a01 !important;
+}
+
 .vote_button {
   height: 1.5em;
   width: 70px;
