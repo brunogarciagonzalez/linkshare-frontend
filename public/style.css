@@ -3,6 +3,28 @@
   src: url(/Akura-Popo-2/Akura-Popo.otf);
 }
 
+.vote_button {
+  height: 1.5em;
+  width: 70px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.funny_button {
+  height: 1.5em;
+  width: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.success_green {
+  color: green !important;
+}
+.review_button_active {
+  background-color: #d99a01;
+  color: white;
+}
+
 .divider_less_margin_top {
   margin-top: 1rem !important;
 }

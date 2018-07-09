@@ -11,8 +11,13 @@ class LinkReviewWidget extends React.Component {
     this.state = { showComments: false };
   }
 
-  handleClick = (e, titleProps) => {
+  handleAccordionClick = (e, titleProps) => {
     this.setState({ showComments: !this.state.showComments });
+  };
+
+  handleHelpfulClick = e => {
+    console.log(e.target.id);
+    // "yes_helpful" || "no_helpful"
   };
 
   render() {
@@ -48,7 +53,6 @@ class LinkReviewWidget extends React.Component {
             Last Update: {this.props.review.review.updated_at.split("T")[0]}
           </span>
         </p>
-
         <div className="ui section divider" />
         <div className="block">
           <span className="bold">Tags:</span>{" "}
@@ -71,14 +75,36 @@ class LinkReviewWidget extends React.Component {
         <br />
         <p className="bold">Content:</p>
         <p className="word_wrap">{this.props.review.review.content}</p>
+        <div className="ui section divider" />
+        <p>X people found this review helpful</p>
+        <p className="bold">
+          Was this review helpful?{" "}
+          <button
+            id="yes_helpful"
+            className="vote_button"
+            onClick={this.handleHelpfulClick}
+          >
+            <i id="yes_helpful" className="thumbs up outline icon" /> Yes
+          </button>
+          <button
+            id="no_helpful"
+            className="vote_button"
+            onClick={this.handleHelpfulClick}
+          >
+            <i id="no_helpful" className="thumbs down outline icon" /> No
+          </button>
+        </p>
 
+        <p className="success_green">
+          <i className="check icon" />Thank you for your feedback.
+        </p>
         {this.props.review.review_comments.length > 0 ? (
           <div>
             <Accordion>
               <Accordion.Title
                 className="linkshare_blue bold"
                 active={this.state.showComments}
-                onClick={this.handleClick}
+                onClick={this.handleAccordionClick}
               >
                 <Icon name="dropdown" />
                 Comments ({this.props.review.review_comments.length})
