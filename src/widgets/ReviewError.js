@@ -27,23 +27,6 @@ class ReviewError extends React.Component {
             />
           </div>
         </div>
-        {this.props.reviewContent.length < 240 ? (
-          <div className="eighth_of_em">
-            <p>
-              <span className="review_characters_right review_characters_not_met">
-                Atleast {240 - this.props.reviewContent.length} more characters
-              </span>
-            </p>
-          </div>
-        ) : (
-          <div className="eighth_of_em">
-            <p>
-              <span className="review_characters_right review_characters_met">
-                Character requirement met!
-              </span>
-            </p>
-          </div>
-        )}
       </div>
     );
   }

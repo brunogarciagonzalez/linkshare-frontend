@@ -163,7 +163,10 @@ class LinkReviewWidget extends React.Component {
         <br />
         <p className="bold">Content:</p>
         <p className="word_wrap">{this.props.review.review.content}</p>
-        <div className="ui section divider" />
+
+        {this.state.numHelpfulVotes > 0 || !this.state.reviewIsByCurrentUser ? (
+          <div className="ui section divider" />
+        ) : null}
         {this.state.numHelpfulVotes > 0 ? (
           <p>
             {this.state.numHelpfulVotes === 1
