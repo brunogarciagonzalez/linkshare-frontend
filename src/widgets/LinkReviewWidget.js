@@ -1,17 +1,44 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Accordion, Icon, Header } from "semantic-ui-react";
 import GetStars from "../widgets/GetStars";
 import ReviewCommentModal from "../widgets/ReviewCommentModal";
+import URL from "../URL";
 
 class LinkReviewWidget extends React.Component {
   constructor() {
     super();
 
     this.state = {
+      notLoggedIn: false,
       showComments: false,
-      helpfulnessVote: false
+      userVoted: false,
+      numHelpfulVotes: 0
     };
+  }
+
+  componentDidMount() {
+    // have to fetch if user has voted helpfulness for this review
+    fetch(`${URL}/review-votes/get`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        review: {
+          review_id: this.props.reviewID,
+          token: localStorage.getItem("token")
+        }
+      })
+    })
+      .then(r => r.json())
+      .then(json => {
+        this.setState({
+          numHelpfulVotes: json.helpful_votes,
+          userVoted: json.current_user_voted
+        });
+      });
   }
 
   handleAccordionClick = (e, titleProps) => {
@@ -19,11 +46,50 @@ class LinkReviewWidget extends React.Component {
   };
 
   handleHelpfulClick = e => {
-    console.log(e.target.id);
-    // "yes_helpful" || "no_helpful"
+    // ## expected params ####
+    // # review: {
+    //     # :review_id,
+    //     # :token
+    // # }
+    if (!localStorage.getItem("token")) {
+      this.setState({ notLoggedIn: true });
+      return;
+    }
+
+    let helpfulBoolean;
+
+    if (e.target.id === "yes_helpful") {
+      helpfulBoolean = true;
+    } else if (e.target.id === "no_helpful") {
+      helpfulBoolean = false;
+    } else {
+      alert("Error @ handleHelpfulClick");
+      return;
+    }
+
+    fetch(`${URL}/review-votes/construct`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        review: {
+          review_id: this.props.reviewID,
+          token: localStorage.getItem("token"),
+          helpful_boolean: helpfulBoolean
+        }
+      })
+    })
+      .then(r => r.json())
+      .then(console.log);
   };
 
   render() {
+    if (this.state.notLoggedIn) {
+      return <Redirect push to={`/signin`} />;
+    }
+
     return (
       <div className="ui segment">
         <h3 className="ui top attached header center_text">
@@ -79,8 +145,16 @@ class LinkReviewWidget extends React.Component {
         <p className="bold">Content:</p>
         <p className="word_wrap">{this.props.review.review.content}</p>
         <div className="ui section divider" />
-        <p>X people found this review helpful</p>
-        {this.state.helpfulnessVote ? (
+        {this.state.numHelpfulVotes > 0 ? (
+          <p>
+            {this.state.numHelpfulVotes === 1
+              ? "1 person found this review helpful"
+              : `${
+                  this.state.numHelpfulVotes
+                } people found this review helpful`}
+          </p>
+        ) : null}
+        {this.state.userVoted ? (
           <p className="success_green">
             <i className="check icon" />Thank you for your feedback.
           </p>

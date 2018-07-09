@@ -115,6 +115,8 @@ class LinkPage extends React.Component {
                         handleNewComment={this.handleNewReviewComment}
                         num={index + 1}
                         key={review.review.id}
+                        reviewID={review.review.id}
+                        reviewerID={review.reviewer.id}
                         review={review}
                       />
                     );
