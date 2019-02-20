@@ -71,7 +71,7 @@ class AboutPage extends React.Component {
               >
                 <img
                   className="about_img"
-                  alt={"ReactJS logo"}
+                  alt={"Rails logo"}
                   src={require(`../images/rails.png`)}
                 />
               </a>
@@ -93,7 +93,7 @@ class AboutPage extends React.Component {
               >
                 <img
                   className="about_img"
-                  alt={"ReactJS logo"}
+                  alt={"Semantic UI logo"}
                   src={require(`../images/semantic_ui.png`)}
                 />
               </a>
